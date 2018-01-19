@@ -13,8 +13,10 @@
 # 计算熵
 `entropy.php`
 # 拟合度计算
+模拟Petri网触发规则，计算拟合度。
 `fitnessOfOwn.js`为本文算法拟合度计算。
 `fitnessOfOwn.js`为`aplha++`算法拟合度计算。
+`fitness-heuristic.js`为启发式过程挖掘算法拟合度计算。
 arr为每种轨迹。
 `numOfTrace`为该种轨迹发生次数。
 `place+`为Petri网中库所标记。
