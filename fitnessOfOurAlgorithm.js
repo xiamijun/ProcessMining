@@ -12,7 +12,7 @@ for (let i=0;i<arr.length;i++){
 
 console.log('fitness:',1-0.5*getSum(item0)/getSum(item1)-0.5*getSum(item2)/getSum(item3));
 
-function getFitness(arr,numOfTrace){
+function getFitness(arr,numOfTrace) {
     let placeStart=1,
         placeA=0,
         placeB=0,
@@ -21,6 +21,7 @@ function getFitness(arr,numOfTrace){
         placeE=0,
         placeF=0,
         placeG=0,
+        placeH=0,
         placeEnd=0;
 
     let m=0,
@@ -33,56 +34,35 @@ function getFitness(arr,numOfTrace){
             case 0:
                 return placeStart?true:false;
                 break;
-            case 7:
-                return placeA?true:false;
-                break;
-            case 10:
-                return placeA?true:false;
-                break;
-            case 16:
-                return placeA&&placeB?true:false;
-                break;
-            case 1:
-                return placeB?true:false;
-                break;
-            case 5:
-                return placeA&&placeB&&placeC&&placeD&&placeF&&placeG?true:false;
-                break;
             case 17:
-                return placeD&&placeC?true:false;
-                break;
-            case 15:
-                return placeC?true:false;
-                break;
-            case 13:
-                return placeE&&placeF?true:false;
-                break;
-            case 3:
-                return placeF?true:false;
+                return placeA?true:false;
                 break;
             case 6:
-                return placeE?true:false;
-                break;
-            case 14:
-                return placeG?true:false;
-                break;
-            case 8:
-                return false;
-                break;
-            case 12:
-                return false;
+                return placeA?true:false;
                 break;
             case 9:
-                return false;
+                return placeA?true:false;
+                break;
+            case 7:
+                return placeC?true:false;
+                break;
+            case 1:
+                return placeD?true:false;
+                break;
+            case 12:
+                return placeD&&placeE?true:false;
+                break;
+            case 8:
+                return placeF&&placeE?true:false;
                 break;
             case 2:
-                return false;
+                return placeG?true:false;
                 break;
             case 4:
-                return false;
+                return placeH?true:false;
                 break;
-            case 11:
-                return false;
+            case 3:
+                return placeB&&placeF?true:false;
                 break;
         }
     }
@@ -92,91 +72,72 @@ function getFitness(arr,numOfTrace){
             case 0:
                 placeStart--;
                 placeA++;
-                placeG++;
-                placeEnd++;
-                placeB++;
-                placeC++;
-                placeE++;
                 c++;
-                p+=6;
-                break;
-            case 7:
-                placeEnd++;
-                c++;
-                p+=2;
-                break;
-            case 10:
-                placeA--;
-                c++;
-                break;
-            case 16:
-                placeB--;
-                placeA--;
-                placeEnd++;
-                c+=2;
-                p++;
-                break;
-            case 1:
-                placeEnd++;
-                c++;
-                p+=2;
-                break;
-            case 5:
-                placeB--;
-                placeC--;
-                placeA--;
-                placeF--;
-                placeG--;
-                c+=6;
                 p++;
                 break;
             case 17:
-                placeEnd++;
-                c+=2;
-                p+=3;
-                break;
-            case 15:
-                placeEnd++;
-                c++;
-                p+=2;
-                break;
-            case 13:
-                placeB++;
-                placeG++;
-                c+=2;
-                p+=4;
-                break;
-            case 3:
                 c++;
                 p++;
                 break;
             case 6:
-                placeEnd++;
+                placeA--;
+                placeB++;
+                placeC++;
                 c++;
                 p+=2;
                 break;
-            case 8:
-                placeEnd++;
-                p++;
-                break;
-            case 12:
-                placeEnd++;
+            case 3:
+                placeB--;
+                placeF--;
+                placeA++;
+                c+=2;
                 p++;
                 break;
             case 9:
+                placeA--;
                 placeEnd++;
+                c++;
                 p++;
+                break;
+            case 7:
+                placeC--;
+                placeD++;
+                placeE++;
+                c++;
+                p+=2;
+                break;
+            case 1:
+                placeD--;
+                placeF++;
+                c++;
+                p++;
+                break;
+            case 12:
+                placeD--;
+                placeE--;
+                placeF++;
+                c+=2;
+                p++;
+                break;
+            case 8:
+                placeE--;
+                placeF--;
+                placeEnd++;
+                placeG++;
+                c+=2;
+                p+=2;
                 break;
             case 2:
-                placeEnd++;
-                p++;
+                placeG--;
+                placeF++;
+                placeH++;
+                c++;
+                p+=2;
                 break;
             case 4:
-                placeEnd++;
-                p++;
-                break;
-            case 11:
-                placeEnd++;
+                placeH--;
+                placeF++;
+                c++;
                 p++;
                 break;
         }
@@ -188,69 +149,47 @@ function getFitness(arr,numOfTrace){
                 placeStart++;
                 m++;
                 break;
-            case 7:
+            case 17:
                 placeA++;
                 m++;
                 break;
-            case 10:
+            case 6:
                 placeA++;
                 m++;
                 break;
-            case 16:
-                if(!placeA){
-                    placeA++;
-                    m++;
-                }
+            case 3:
                 if(!placeB){
                     placeB++;
-                    m++;
-                }
-                break;
-            case 1:
-                placeB++;
-                m++;
-                break;
-            case 5:
-                if(!placeC){
-                    placeC++;
-                    m++;
-                }
-                if(!placeB){
-                    placeB++;
-                    m++;
-                }
-                if(!placeA){
-                    placeA++;
-                    m++;
-                }
-                if(!placeD){
-                    placeD++;
                     m++;
                 }
                 if(!placeF){
                     placeF++;
                     m++;
                 }
-                if(!placeG){
-                    placeG++;
-                    m++;
-                }
                 break;
-            case 17:
-                if(!placeC){
-                    placeC++;
-                    m++;
-                }
+            case 9:
+                placeA++;
+                m++;
+                break;
+            case 7:
+                placeC++;
+                m++;
+                break;
+            case 1:
+                placeD++;
+                m++;
+                break;
+            case 12:
                 if(!placeD){
                     placeD++;
                     m++;
                 }
+                if(!placeE){
+                    placeE++;
+                    m++;
+                }
                 break;
-            case 15:
-                placeC++;
-                m++;
-                break;
-            case 13:
+            case 8:
                 if(!placeE){
                     placeE++;
                     m++;
@@ -260,16 +199,12 @@ function getFitness(arr,numOfTrace){
                     m++;
                 }
                 break;
-            case 3:
-                placeF++;
-                m++;
-                break;
-            case 6:
-                placeE++;
-                m++;
-                break;
-            case 14:
+            case 2:
                 placeG++;
+                m++;
+                break;
+            case 4:
+                placeH++;
                 m++;
                 break;
         }
@@ -287,7 +222,7 @@ function getFitness(arr,numOfTrace){
         placeEnd--;
         c++;
     }
-    r=placeStart+placeA+placeB+placeC+placeD+placeE+placeF+placeG+placeEnd;
+    r=placeStart+placeA+placeB+placeC+placeD+placeE+placeF+placeG+placeH+placeEnd;
 //        console.log('m:'+m);
 //        console.log('c:'+c);
 //        console.log('r:'+r);

@@ -2,11 +2,14 @@
 过程挖掘硕士论文算法实现
 
 # 数据集
-`Hospital Billing - Event Log.xes`。  
+`Hospital Billing - Event Log.xes`   
 
-来源于`http://data.4tu.nl/repository/uuid:76c46b83-c930-4798-a1c9-4be94dfeb741`
+来源于`http://data.4tu.nl/repository/uuid:76c46b83-c930-4798-a1c9-4be94dfeb741`  
+
+埃因霍温科技大学提供的医院ERP系统医院账单日志。  
+
 # 预处理
-依次`file.php`，`file2.php`，`trace.php`，`trace2.php`。  
+依次`file.php`，`file2.php`，`trace.php`，`trace2.php`贵轨迹进行归类，分别输出轨迹及其发生次数。  
 
 产生文件`hospital-newData.txt`，`hospital-newData2.txt`，`hospital-After.txt`，`hospital-After2.txt`。
 # hospital.html
@@ -36,6 +39,17 @@ arr为每种轨迹。
 
 `enable()`激活变迁。  
 
-`add()`添加使变迁使能的对应库所。
+`add()`添加使变迁使能的对应库所。  
+
+最终拟合度：  
+
+本文算法：
+`0.8769815952239328`  
+
+启发式算法：
+`0.8225415046044828`  
+
+a++算法：
+`0.6257736357738879`
 
 

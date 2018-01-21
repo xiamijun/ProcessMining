@@ -20,8 +20,15 @@ while (!feof($fp)){
     }
 }
 
+//
+//print_r($traces);
+//print_r($count);
+//foreach ($traces as $v){
+//    echo '['.$v.']'.',';
+//}
+foreach ($count as $v){
+    echo $v.',';
+}
 
-print_r($traces);
-print_r($count);
 
 fclose($fp);
