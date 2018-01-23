@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let log='ACBDEJIGKM ABCDDEGIHIJKM ACBGEDIJKM ABDEGIHIJKM ABCCDFGIHIJKM ABCDFGIHIKM ACBDEGIHHIJKM ABCDEGIJJKM ACBDFGJKM ACBDFGGIHIJKM ABCDFGMJKI ABCDFGJKM JBCDFGIAKM ACCBDEGIHIJKM ABCDEGIIHIJKM ABBCDEGIHIJKM ABCDFGMHIJKI ACGDFBIJKM ABCDFGJKM ABCIEGDHIJKM ACBDFGIJKM ACBDEGIHIJKM ABCDFGIHIJKM ACBDFGIHIJKM ABCDFGIHIJKM ABCDFGIHIJKM ABCDFGIHIJKM ABCDFGIHIJKM ACBDFGIJKM ACBDEGIHIJKM ABCDFGIJKM ACBDFGIHIJKM ACBDFGIHIJKM ACBDFGIJKM ABCDEGIJKM ACBDEGIJKM ABCDFGIJKM ACBDEGIHIJKM ABCDEGIJKM ABCDFGIJKM ABCDEGIHIJKM ABCDFGIJKM ACBDEGIHIJKM ABCDEGIJKM ABCDFGIJKM ACBDEGIHIJKM ABCDFGIHIJKM ABCDFGIJKM ACBDFGIHIJKM ABCDFGIHIJKM ABCDEGIJKM ACBDFGIHIJKM ACBDEGIJKM ABCDEGIHIJKM ABCDEGIJKM ACBDEGIJKM ABCDFGIJKM ABCDEGIHIJKM ABCDFGIHIJKM ACBDEGIHIJKM ABCDFGIJKM ACBDEGIJKM ACBDEGIHIJKM ACBDEGIHIJKM ACBDFGIHIJKM ACBDFGIJKM ABCDFGIHIJKM ACBDFGIHIJKM ABCDEGIJKM ABCDEGIHIJKM ABCDFGIHIJKM ACBDEGIHIJKM ACBDFGIHIJKM ABCDEGIHIJKM ABCDFGIJKM ABCDEGIHIJKM ACBDFGIJKM ABCDFGIJKM ABCDFGIJKM ABCDEGIJKM ABCDEGIHIJKM ACBDFGIJKM ABCDEGIHIJKM ACBDFGIHIJKM ABCDEGIHIJKM ACBDEGIHIJKM ACBDFGIHIJKM ABCDFGIHIJKM ABCDEGIHIJKM ABCDEGIHIJKM ACBDFGIHIJKM ACBDEGIJKM ACBDEGIHIJKM ABCDEGIHIJKM ABCDFGIHIJKM ACBDFGIJKM ACBDEGIJKM ACBDEGIJKM ACBDEGIHIJKM ABCDFGIHIJKM';
+
+    let n=12;   //活动数
+    let N=0.2,
+        m=100;  //轨迹数
+
+    let thresholdOfCorrelation;
+    let thresholdOfFrequency=1+Math.round(N*m/n);
+    console.log('thresholdOfFrequency:',thresholdOfFrequency);
+
+    let listOfLoop=['7 and 8','8 and 7'];
+    let listOfParallel=[];
+    let listOfSelective=[];
+
+    let FM=new Array(n);
+    for (let i=0;i<n;i++){
+        FM[i]=new Array(n);
+        FM[i].fill(0);
+    }
+
+    let traces=log.split(' ');
+    for (let i=0;i<traces.length;i++){
+        if(traces[i].match(/AA/)){
+            FM[0][0]++;
+        }
+        if(traces[i].match(/AB/)){
+            FM[0][1]++;
+        }
+        if(traces[i].match(/AC/)){
+            FM[0][2]++;
+        }
+        if(traces[i].match(/AD/)){
+            FM[0][3]++;
+        }
+        if(traces[i].match(/AE/)){
+            FM[0][4]++;
+        }
+        if(traces[i].match(/AF/)){
+            FM[0][5]++;
+        }
+        if(traces[i].match(/AG/)){
+            FM[0][6]++;
+        }
+        if(traces[i].match(/AH/)){
+            FM[0][7]++;
+        }
+        if(traces[i].match(/AI/)){
+            FM[0][8]++;
+        }
+        if(traces[i].match(/AJ/)){
+            FM[0][9]++;
+        }
+        if(traces[i].match(/AK/)){
+            FM[0][10]++;
+        }
+        if(traces[i].match(/AM/)){
+            FM[0][11]++;
+        }
+        if(traces[i].match(/BA/)){
+            FM[1][0]++;
+        }
+        if(traces[i].match(/BB/)){
+            FM[1][1]++;
+        }
+        if(traces[i].match(/BC/)){
+            FM[1][2]++;
+        }
+        if(traces[i].match(/BD/)){
+            FM[1][3]++;
+        }
+        if(traces[i].match(/BE/)){
+            FM[1][4]++;
+        }
+        if(traces[i].match(/BF/)){
+            FM[1][5]++;
+        }
+        if(traces[i].match(/BG/)){
+            FM[1][6]++;
+        }
+        if(traces[i].match(/BH/)){
+            FM[1][7]++;
+        }
+        if(traces[i].match(/BI/)){
+            FM[1][8]++;
+        }
+        if(traces[i].match(/BJ/)){
+            FM[1][9]++;
+        }
+        if(traces[i].match(/BK/)){
+            FM[1][10]++;
+        }
+        if(traces[i].match(/BM/)){
+            FM[1][11]++;
+        }
+        if(traces[i].match(/CA/)){
+            FM[2][0]++;
+        }
+        if(traces[i].match(/CB/)){
+            FM[2][1]++;
+        }
+        if(traces[i].match(/CC/)){
+            FM[2][2]++;
+        }
+        if(traces[i].match(/CD/)){
+            FM[2][3]++;
+        }
+        if(traces[i].match(/CE/)){
+            FM[2][4]++;
+        }
+        if(traces[i].match(/CF/)){
+            FM[2][5]++;
+        }
+        if(traces[i].match(/CG/)){
+            FM[2][6]++;
+        }
+        if(traces[i].match(/CH/)){
+            FM[2][7]++;
+        }
+        if(traces[i].match(/CI/)){
+            FM[2][8]++;
+        }
+        if(traces[i].match(/CJ/)){
+            FM[2][9]++;
+        }
+        if(traces[i].match(/CK/)){
+            FM[2][10]++;
+        }
+        if(traces[i].match(/CM/)){
+            FM[2][11]++;
+        }
+        if(traces[i].match(/DA/)){
+            FM[3][0]++;
+        }
+        if(traces[i].match(/DB/)){
+            FM[3][1]++;
+        }
+        if(traces[i].match(/DC/)){
+            FM[3][2]++;
+        }
+        if(traces[i].match(/DD/)){
+            FM[3][3]++;
+        }
+        if(traces[i].match(/DE/)){
+            FM[3][4]++;
+        }
+        if(traces[i].match(/DF/)){
+            FM[3][5]++;
+        }
+        if(traces[i].match(/DG/)){
+            FM[3][6]++;
+        }
+        if(traces[i].match(/DH/)){
+            FM[3][7]++;
+        }
+        if(traces[i].match(/DI/)){
+            FM[3][8]++;
+        }
+        if(traces[i].match(/DJ/)){
+            FM[3][9]++;
+        }
+        if(traces[i].match(/DK/)){
+            FM[3][10]++;
+        }
+        if(traces[i].match(/DM/)){
+            FM[3][11]++;
+        }
+        if(traces[i].match(/EA/)){
+            FM[4][0]++;
+        }
+        if(traces[i].match(/EB/)){
+            FM[4][1]++;
+        }
+        if(traces[i].match(/EC/)){
+            FM[4][2]++;
+        }
+        if(traces[i].match(/ED/)){
+            FM[4][3]++;
+        }
+        if(traces[i].match(/EE/)){
+            FM[4][4]++;
+        }
+        if(traces[i].match(/EF/)){
+            FM[4][4]++;
+        }
+        if(traces[i].match(/EG/)){
+            FM[4][6]++;
+        }
+        if(traces[i].match(/EH/)){
+            FM[4][7]++;
+        }
+        if(traces[i].match(/EI/)){
+            FM[4][8]++;
+        }
+        if(traces[i].match(/EJ/)){
+            FM[4][9]++;
+        }
+        if(traces[i].match(/EK/)){
+            FM[4][10]++;
+        }
+        if(traces[i].match(/EM/)){
+            FM[4][11]++;
+        }
+        if(traces[i].match(/FA/)){
+            FM[5][0]++;
+        }
+        if(traces[i].match(/FB/)){
+            FM[5][1]++;
+        }
+        if(traces[i].match(/FC/)){
+            FM[5][2]++;
+        }
+        if(traces[i].match(/FD/)){
+            FM[5][3]++;
+        }
+        if(traces[i].match(/FE/)){
+            FM[5][4]++;
+        }
+        if(traces[i].match(/FF/)){
+            FM[5][5]++;
+        }
+        if(traces[i].match(/FG/)){
+            FM[5][6]++;
+        }
+        if(traces[i].match(/FH/)){
+            FM[5][7]++;
+        }
+        if(traces[i].match(/FI/)){
+            FM[5][8]++;
+        }
+        if(traces[i].match(/FJ/)){
+            FM[5][9]++;
+        }
+        if(traces[i].match(/FK/)){
+            FM[5][10]++;
+        }
+        if(traces[i].match(/FM/)){
+            FM[5][11]++;
+        }
+        if(traces[i].match(/GA/)){
+            FM[6][0]++;
+        }
+        if(traces[i].match(/GB/)){
+            FM[6][1]++;
+        }
+        if(traces[i].match(/GC/)){
+            FM[6][2]++;
+        }
+        if(traces[i].match(/GD/)){
+            FM[6][3]++;
+        }
+        if(traces[i].match(/GE/)){
+            FM[6][4]++;
+        }
+        if(traces[i].match(/GF/)){
+            FM[6][5]++;
+        }
+        if(traces[i].match(/GG/)){
+            FM[6][6]++;
+        }
+        if(traces[i].match(/GH/)){
+            FM[6][7]++;
+        }
+        if(traces[i].match(/GI/)){
+            FM[6][8]++;
+        }
+        if(traces[i].match(/GJ/)){
+            FM[6][9]++;
+        }
+        if(traces[i].match(/GK/)){
+            FM[6][10]++;
+        }
+        if(traces[i].match(/GM/)){
+            FM[6][11]++;
+        }
+        if(traces[i].match(/HA/)){
+            FM[7][0]++;
+        }
+        if(traces[i].match(/HB/)){
+            FM[7][1]++;
+        }
+        if(traces[i].match(/HC/)){
+            FM[7][2]++;
+        }
+        if(traces[i].match(/HD/)){
+            FM[7][3]++;
+        }
+        if(traces[i].match(/HE/)){
+            FM[7][4]++;
+        }
+        if(traces[i].match(/HF/)){
+            FM[7][5]++;
+        }
+        if(traces[i].match(/HG/)){
+            FM[7][6]++;
+        }
+        if(traces[i].match(/HH/)){
+            FM[7][7]++;
+        }
+        if(traces[i].match(/HI/)){
+            FM[7][8]++;
+        }
+        if(traces[i].match(/HJ/)){
+            FM[7][9]++;
+        }
+        if(traces[i].match(/HK/)){
+            FM[7][10]++;
+        }
+        if(traces[i].match(/HM/)){
+            FM[7][11]++;
+        }
+        if(traces[i].match(/IA/)){
+            FM[8][0]++;
+        }
+        if(traces[i].match(/IB/)){
+            FM[8][1]++;
+        }
+        if(traces[i].match(/IC/)){
+            FM[8][2]++;
+        }
+        if(traces[i].match(/ID/)){
+            FM[8][3]++;
+        }
+        if(traces[i].match(/IE/)){
+            FM[8][4]++;
+        }
+        if(traces[i].match(/IF/)){
+            FM[8][5]++;
+        }
+        if(traces[i].match(/IG/)){
+            FM[8][6]++;
+        }
+        if(traces[i].match(/IH/)){
+            FM[8][7]++;
+        }
+        if(traces[i].match(/II/)){
+            FM[8][8]++;
+        }
+        if(traces[i].match(/IJ/)){
+            FM[8][9]++;
+        }
+        if(traces[i].match(/IK/)){
+            FM[8][10]++;
+        }
+        if(traces[i].match(/IM/)){
+            FM[8][11]++;
+        }
+        if(traces[i].match(/JA/)){
+            FM[9][0]++;
+        }
+        if(traces[i].match(/JB/)){
+            FM[9][1]++;
+        }
+        if(traces[i].match(/JC/)){
+            FM[9][2]++;
+        }
+        if(traces[i].match(/JD/)){
+            FM[9][3]++;
+        }
+        if(traces[i].match(/JE/)){
+            FM[9][4]++;
+        }
+        if(traces[i].match(/JF/)){
+            FM[9][5]++;
+        }
+        if(traces[i].match(/JG/)){
+            FM[9][6]++;
+        }
+        if(traces[i].match(/JH/)){
+            FM[9][7]++;
+        }
+        if(traces[i].match(/JI/)){
+            FM[9][8]++;
+        }
+        if(traces[i].match(/JJ/)){
+            FM[9][9]++;
+        }
+        if(traces[i].match(/JK/)){
+            FM[9][10]++;
+        }
+        if(traces[i].match(/JM/)){
+            FM[9][11]++;
+        }
+        if(traces[i].match(/KA/)){
+            FM[10][0]++;
+        }
+        if(traces[i].match(/KB/)){
+            FM[10][1]++;
+        }
+        if(traces[i].match(/KC/)){
+            FM[10][2]++;
+        }
+        if(traces[i].match(/KD/)){
+            FM[10][3]++;
+        }
+        if(traces[i].match(/KE/)){
+            FM[10][4]++;
+        }
+        if(traces[i].match(/KF/)){
+            FM[10][5]++;
+        }
+        if(traces[i].match(/KG/)){
+            FM[10][6]++;
+        }
+        if(traces[i].match(/KH/)){
+            FM[10][7]++;
+        }
+        if(traces[i].match(/KI/)){
+            FM[10][8]++;
+        }
+        if(traces[i].match(/KJ/)){
+            FM[10][9]++;
+        }
+        if(traces[i].match(/KK/)){
+            FM[10][10]++;
+        }
+        if(traces[i].match(/KM/)){
+            FM[10][11]++;
+        }
+        if(traces[i].match(/MA/)){
+            FM[11][0]++;
+        }
+        if(traces[i].match(/MB/)){
+            FM[11][1]++;
+        }
+        if(traces[i].match(/MC/)){
+            FM[11][2]++;
+        }
+        if(traces[i].match(/MD/)){
+            FM[11][3]++;
+        }
+        if(traces[i].match(/ME/)){
+            FM[11][4]++;
+        }
+        if(traces[i].match(/MF/)){
+            FM[11][5]++;
+        }
+        if(traces[i].match(/MG/)){
+            FM[11][6]++;
+        }
+        if(traces[i].match(/MH/)){
+            FM[11][7]++;
+        }
+        if(traces[i].match(/MI/)){
+            FM[11][8]++;
+        }
+        if(traces[i].match(/MJ/)){
+            FM[11][9]++;
+        }
+        if(traces[i].match(/MK/)){
+            FM[11][10]++;
+        }
+        if(traces[i].match(/MM/)){
+            FM[11][11]++;
+        }
+    }
+
+    console.log('FM:');
+    console.log(FM);
+
+    for(let i=0;i<n;i++){
+        for (let j=0;j<n;j++){
+            if(i===j&&FM[i][j]>thresholdOfFrequency){
+                listOfLoop.push(`${i} and ${j}`)
+            }
+        }
+    }
+
+    let MeanOfFM=sumOfFM(FM)/isNotZero(FM);
+    console.log('MeanOfFM:'+MeanOfFM);
+
+    //pushParallel
+    //    判断并行，并放入数组
+    for (let i=0;i<n;i++){
+        for (let j=0;j<n;j++){
+            if (i!==j&&FM[i][j]>thresholdOfFrequency&&FM[j][i]>thresholdOfFrequency&&FM[i][j]+FM[j][i]>MeanOfFM&&listOfLoop.indexOf(`${i} and ${j}`)===-1){
+                listOfParallel.push(`${i} and ${j}`);
+            }
+        }
+    }
+
+    //improveOfFM
+    //改进的频次矩阵
+    let FM2=new Array(n);
+    for (let i=0;i<n;i++){
+        FM2[i]=new Array(n);
+        FM2[i].fill(0);
+    }
+    for (let i=0;i<n;i++){
+        for (let j=0;j<n;j++){
+            if(i!==j){
+                if(listOfParallel.indexOf(`${i} and ${j}`)!==-1||listOfLoop.indexOf(`${i} and ${j}`)!==-1){
+                    FM2[i][j]=0;
+                }else {
+                    FM2[i][j]=FM[i][j];
+                }
+            }else{
+                if (FM[i][j]<thresholdOfFrequency||listOfLoop.indexOf(`${i} and ${j}`)!==-1){
+                    FM2[i][j]=0;
+                }else {
+                    FM2[i][j]=FM[i][j];
+                }
+            }
+        }
+    }
+    console.log('improveOfFM',FM2);
+
+    let CM=getCM(FM2);
+    console.log('CM',CM);
+
+    //pushSelective
+    //判断选择，并放入数组
+    for (let k=0;k<n;k++){
+        for (let i=0;i<n-1;i++){
+            for (let j=i+1;j<n;j++){
+                if(FM2[k][i]>thresholdOfFrequency&&CM[k][i]>thresholdOfCorrelation&&FM2[k][j]>thresholdOfFrequency&&CM[k][j]>thresholdOfCorrelation&&listOfParallel.indexOf(`${i} and ${j}`)===-1){
+                    listOfSelective.push(`${i} and ${j}`);
+                }
+            }
+        }
+    }
+
+    //求频次均值
+    function sumOfFM(FM) {
+        let sum=0;
+        for (let i=0;i<FM.length;i++){
+            for (let j=0;j<FM[i].length;j++){
+                sum+=FM[i][j];
+            }
+        }
+        return sum;
+    }
+
+    function isNotZero(FM) {
+        let count=0;
+        for (let i=0;i<FM.length;i++){
+            for (let j=0;j<FM[i].length;j++){
+                if (FM[i][j]!==0){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    //求矩阵CM
+    function getCM(FM2) {
+        let CM=new Array(n);
+        for (let i=0;i<n;i++){
+            CM[i]=new Array(n);
+            CM[i].fill(0);
+        }
+        for (let i = 0; i < FM2.length; i++) {
+            for (let j = 0; j < FM2[i].length; j++) {
+                CM[i][j]=(FM2[i][j]-FM2[j][i])/(FM2[i][j]+FM2[j][i]+1);
+            }
+        }
+        return CM;
+    }
+
+    console.log('存在并行关系的活动：'+listOfParallel);
+    console.log('存在选择关系的活动：'+listOfSelective);
+
+    //存在边的放入数组
+    let links=[];
+    let edges=[];
+    for (let i=0;i<n;i++){
+        for (let j=0;j<n;j++){
+            if (CM[i][j]>=thresholdOfCorrelation||listOfLoop.indexOf(`${i} and ${j}`)!==-1){
+                links.push(`${i} to ${j}`);
+                edges.push(new Array(i,j));
+            }
+        }
+    }
+    console.log('存在边：'+links);
+</script>
+</body>
+</html>

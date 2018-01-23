@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: xiejun
- * Date: 2018/1/8
- * Time: 下午3:13
- */
 $fp=fopen('hostipal-newData.txt','r');
 $str='';
 while (!feof($fp)){

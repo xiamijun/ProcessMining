@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    let trace=['ABDCEGIJKM','ABCDEGMJKI','ACBDFGIHIJKM','ABCDEGIJKM','ACBDEGIHIJKM','ABCDEGIHIJKM','ACBDFGIJKM','ABCDFGIJKM','ABCDFGIHIJKM','ACBDEGIJKM'];
+    let numOfTrace=[1,1,15,13,16,13,13,10,10,8];
+    let arr=[];
+    for(let i=0;i<trace.length;i++){
+        arr.push(trace[i].split(''));
+    }
+
+    let zimu=['A','B','C','D','E','F','G','H','I','J','K','M'];
+    let SFM=['A and I','A and J','A and K','A and H','C and H','D and H','E and H','G and H','I and H','H and H'];
+    let SPM=['B and C','D and C','F and C','H and K','H and M'];
+
+    for (let i=0;i<zimu.length;i++){
+        if (zimu[i]==='A'||zimu[i]==='B'||zimu[i]==='D'){
+            SFM.push(`${zimu[i]} and E`);
+            SFM.push(`${zimu[i]} and F`);
+        }
+        if (zimu[i]==='A'||zimu[i]==='B'||zimu[i]==='D'||zimu[i]==='C'||zimu[i]==='E'||zimu[i]==='F'||zimu[i]==='G'){
+            for (j=0;j<zimu.length;j++){
+                if(zimu[j]==='M'||zimu[j]==='I'||zimu[j]==='J'||zimu[j]==='H'||zimu[j]==='K'){
+                    SFM.push(`${zimu[i]} and ${zimu[j]}`);
+                }
+            }
+        }
+        if (zimu[i]!=='A'&&zimu[i]!=='C'){
+            SPM.push(`${zimu[i]} and C`);
+            SPM.push(`C and ${zimu[i]}`);
+        }
+        if(i>=7){
+            SPM.push(`${zimu[i]} and M`);
+            SPM.push(`${zimu[i]} and I`);
+            SPM.push(`${zimu[i]} and J`);
+            SPM.push(`${zimu[i]} and K`);
+            SPM.push(`${zimu[i]} and H`);
+        }
+    }
+
+    let SFL=[];
+    let SPL=[];
+
+    for (let i=0;i<zimu.length;i++){
+        for (let j=0;j<zimu.length;j++){
+            let sum=0;
+            arr.forEach(item=>{
+                if(item.indexOf(zimu[i])<item.indexOf(zimu[j])){
+                    sum++;
+                }
+            });
+            if (sum>0&&sum<trace.length){
+                SFL.push(`${zimu[i]} and ${zimu[j]}`);
+            }
+        }
+    }
+//console.log(SFL);
+
+    for (let i=0;i<zimu.length;i++){
+        for (let j=0;j<zimu.length;j++){
+            let sum=0;
+            arr.forEach(item=>{
+                if(item.indexOf(zimu[i])<item.indexOf(zimu[j])&&item.indexOf(zimu[i])!==-1){
+                    sum++;
+                }
+            });
+            if (sum>0&&sum<trace.length){
+                SPL.push(`${zimu[i]} and ${zimu[j]}`);
+            }
+        }
+    }
+//    console.log(SPL);
+
+    function jiaoJi(arr1,arr2) {
+        let result=[];
+        arr1.forEach(item=>{
+            if (arr2.indexOf(item)!==-1){
+                result.push(item);
+            }
+        });
+        return result;
+    }
+
+    console.log('aB:',0.5*jiaoJi(SFM,SFL).length/SFM.length+0.5*jiaoJi(SPM,SPL).length/SPM.length);
+</script>
+</body>
+</html>

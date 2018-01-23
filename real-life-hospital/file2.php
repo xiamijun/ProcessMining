@@ -1,10 +1,3 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: xiejun
- * Date: 2017/12/26
- * Time: 上午10:58
- */
 $fp=fopen('hostipal-newData.txt','r');
 $str='';
 $count=0;

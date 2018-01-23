@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    let trace=['ACCBDEGIHIJKM','ACBDDEGIJKM','ACBDFGIJKMM','ABCDFGIHIJJKM','ACBDDEGIHIJKM','ACBDEGIIJKM','ABDFGIHIJKM','ABCCDEGIJKM','ABCFGIJKM','ABCDFGIHIJKM','ACBDEGIHIJKM','ACBDFGIJKM','ABCDEGIJKM','ABCDFGIJKM','ACBDEGIJKM','ACBDFGIHIJKM','ABCDEGIHIJKM'];
+    let numOfTrace=[1,1,1,1,1,1,1,1,1,15,8,17,10,13,12,8,8];
+    let arr=[];
+    for(let i=0;i<trace.length;i++){
+        arr.push(trace[i].split(''));
+    }
+
+    let zimu=['A','B','C','D','E','F','G','M'];
+    let SFM=[];
+    let SPM=['B and B','C and B','B and C','B and C','B and D','C and D','D and D','B and E','C and E','D and E','B and F','C and F','D and F','B and G','C and G','D and G'];
+
+    for (let i=0;i<zimu.length;i++){
+        if (zimu[i]!=='A'&&zimu[i]!=='B'&&zimu[i]!=='G'&&zimu[i]!=='M'){
+            SFM.push(`A and ${zimu[i]}`);
+        }
+        if (zimu[i]!=='A'&&zimu[i]!=='G'&&zimu[i]!=='M'){
+            SFM.push(`B and ${zimu[i]}`);
+            SFM.push(`C and ${zimu[i]}`);
+        }
+        if (zimu[i]!=='B'&&zimu[i]!=='G'&&zimu[i]!=='A'&&zimu[i]!=='C'&&zimu[i]!=='M'){
+            SFM.push(`D and ${zimu[i]}`);
+        }
+        if(zimu[i]!=='M'){
+            SPM.push(`${zimu[i]} and M`);
+        }
+
+    }
+
+    for (let i=0;i<zimu.length;i++){
+        if (zimu[i]!=='H'&&zimu[i]!=='M'&&zimu[i]!=='A'){
+            for (let j=0;j<zimu.length;j++){
+                if (zimu[j]!=='H'&&zimu[j]!=='A'){
+                    SPM.push(`${zimu[i]} and ${zimu[j]}`);
+                }
+            }
+        }
+
+    }
+
+    let SFL=[];
+    let SPL=[];
+
+    for (let i=0;i<zimu.length;i++){
+        for (let j=0;j<zimu.length;j++){
+            let sum=0;
+            arr.forEach(item=>{
+                if(item.indexOf(zimu[i])<item.indexOf(zimu[j])){
+                    sum++;
+                }
+            });
+            if (sum>0&&sum<trace.length){
+                SFL.push(`${zimu[i]} and ${zimu[j]}`);
+            }
+        }
+    }
+//console.log(SFL);
+
+    for (let i=0;i<zimu.length;i++){
+        for (let j=0;j<zimu.length;j++){
+            let sum=0;
+            arr.forEach(item=>{
+                if(item.indexOf(zimu[i])<item.indexOf(zimu[j])&&item.indexOf(zimu[i])!==-1){
+                    sum++;
+                }
+            });
+            if (sum>0&&sum<trace.length){
+                SPL.push(`${zimu[i]} and ${zimu[j]}`);
+            }
+        }
+    }
+//    console.log(SPL);
+
+    function jiaoJi(arr1,arr2) {
+        let result=[];
+        arr1.forEach(item=>{
+            if (arr2.indexOf(item)!==-1){
+                result.push(item);
+            }
+        });
+        return result;
+    }
+
+    console.log('aB:',0.5*jiaoJi(SFM,SFL).length/SFM.length+0.5*jiaoJi(SPM,SPL).length/SPM.length);
+</script>
+</body>
+</html>

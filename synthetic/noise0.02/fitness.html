@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    let trace=['ABDCEGIJKM','ABCDEGMJKI','ACBDFGIHIJKM','ABCDEGIJKM','ACBDEGIHIJKM','ABCDEGIHIJKM','ACBDFGIJKM','ABCDFGIJKM','ABCDFGIHIJKM','ACBDEGIJKM'];
+    let numOfTrace=[1,1,15,13,16,13,13,10,10,8];
+    let item0=[];
+    let item1=[];
+    let item2=[];
+    let item3=[];
+
+//    let trace='ACBDEGIJKM';
+//    let arr=trace.split('');
+//    let numOfTrace=8;
+
+    for (let i=0;i<trace.length;i++){
+        getFitness(trace[i].split(''),numOfTrace[i]);
+    }
+
+    console.log('fitness:',1-0.5*getSum(item0)/getSum(item1)-0.5*getSum(item2)/getSum(item3));
+
+    function getFitness(arr,numOfTrace){
+        let placeStart=1,
+            place1=0,
+            place2=0,
+            place3=0,
+            place4=0,
+            place5=0,
+            place6=0,
+            place7=0,
+            place8=0,
+            placeEnd=0;
+
+        let m=0,
+            c=0,
+            r=0,
+            p=1;
+
+        function judgeIsEnable(num) {
+            switch (num){
+                case 'A':
+                    return placeStart?true:false;
+                    break;
+                case 'C':
+                    return place1?true:false;
+                    break;
+                case 'D':
+                    return place2?true:false;
+                    break;
+                case 'E':
+                    return place3?true:false;
+                    break;
+                case 'G':
+                    return place4?true:false;
+                    break;
+                case 'I':
+                    return place5?true:false;
+                    break;
+                case 'H':
+                    return place6?true:false;
+                    break;
+                case 'J':
+                    return place6?true:false;
+                    break;
+                case 'K':
+                    return place7?true:false;
+                    break;
+                case 'M':
+                    return place8?true:false;
+                    break;
+                default :
+                    return true;
+                    break;
+            }
+        }
+
+        function enable(num) {
+            switch (num){
+                case 'A':
+                    placeStart--;
+                    place1++;
+                    c++;
+                    p++;
+                    break;
+                case 'C':
+                    place1--;
+                    place2++;
+                    c++;
+                    p++;
+                    break;
+                case 'D':
+                    place2--;
+                    place3++;
+                    c++;
+                    p++;
+                    break;
+                case 'E':
+                    place3--;
+                    place4++;
+                    c++;
+                    p++;
+                    break;
+                case 'G':
+                    place4--;
+                    place5++;
+                    c++;
+                    p++;
+                    break;
+                case 'I':
+                    place5--;
+                    place6++;
+                    c++;
+                    p++;
+                    break;
+                case 'H':
+                    place6--;
+                    place5++;
+                    c++;
+                    p++;
+                    break;
+                case 'J':
+                    place6--;
+                    place7++;
+                    c++;
+                    p++;
+                    break;
+                case 'K':
+                    place7--;
+                    place8++;
+                    c++;
+                    p++;
+                    break;
+                case 'M':
+                    place8--;
+                    placeEnd++;
+                    c++;
+                    p++;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        function add(num) {
+            switch (num){
+                case 'A':
+                    placeStart++;
+                    m++;
+                    break;
+                case 'C':
+                    place1++;
+                    m++;
+                    break;
+                case 'D':
+                    place2++;
+                    m++;
+                    break;
+                case 'E':
+                    place3++;
+                    m++;
+                    break;
+                case 'G':
+                    place4++;
+                    m++;
+                    break;
+                case 'I':
+                    place5++;
+                    m++;
+                    break;
+                case 'H':
+                    place6++;
+                    m++;
+                    break;
+                case 'J':
+                    place6++;
+                    m++;
+                    break;
+                case 'K':
+                    place7++;
+                    m++;
+                    break;
+                case 'M':
+                    place8++;
+                    m++;
+                    break;
+            }
+        }
+
+        for (let i=0;i<arr.length;i++){
+            if (judgeIsEnable(arr[i])){
+                enable(arr[i]);
+            }else {
+                add(arr[i]);
+                enable(arr[i]);
+            }
+        }
+        if (placeEnd){
+            placeEnd--;
+            c++;
+        }
+        r=placeStart+place1+place2+place3+place4+place5+place6+place7+place8+placeEnd;
+
+        item0.push(numOfTrace*m);
+        item1.push(numOfTrace*c);
+        item2.push(numOfTrace*r);
+        item3.push(numOfTrace*p);
+    }
+
+    function getSum(arr) {
+        return arr.reduce((a,b)=>{return a+b});
+    }
+
+
+//    console.log('m:'+m);
+//    console.log('c:'+c);
+//    console.log('r:'+r);
+//    console.log('p:'+p);
+//    console.log(numOfTrace*m,numOfTrace*c,numOfTrace*r,numOfTrace*p);
+</script>
+</body>
+</html>

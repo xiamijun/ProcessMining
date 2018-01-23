@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let str=`2 13 1 12
+2 11 2 11
+1 12 1 12
+1 14 1 14
+2 13 2 13
+2 11 2 11
+0 12 1 13
+2 11 1 10
+1 10 1 10
+0 195 0 195
+8 96 8 96
+0 187 0 187
+10 100 10 100
+0 143 0 143
+12 120 12 120
+0 104 0 104
+8 96 8 96`;
+    let arr=str.split("\n");
+    function getItem(num) {
+        let sum=0;
+        for(let i=0;i<arr.length;i++){
+            let item=arr[i].split(' ');
+            sum+=parseInt(item[num]);
+        }
+        return sum;
+    }
+
+    console.log('fitness:',1-getItem(0)/(2*getItem(1))-getItem(2)/(2*getItem(3)));
+</script>
+</body>
+</html>

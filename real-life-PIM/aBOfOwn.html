@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    let str=`A	B	C	E	G	E	I	E	H	E	G	E	E	H	H	H	E	H	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	J
+A	B	C	E	G	E	I	E	D	B	C	E	I	I	E	H	E	G	E	J
+A	B	C	E	G	E	H	H	F	C	E	C	E	G	E	J
+A	B	D	B	C	E	G	E	I	E	E	H	E	G	E	I	E	G	E	H	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	J
+A	B	C	E	G	E	I	E	J
+A	B	C	E	G	E	H	E	G	E	H	H	E	E	G	E	H	H	E	G	E	H	H	H	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	H	H	E	G	E	H	H	H	E	I	I	E	G	E	J
+A	B	C	E	G	E	H	H	E	G	E	H	H	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	H	H	E	G	E	H	E	G	E	I	E	G	E	H	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	E	H	E	G	E	I	I	E	G	E	G	E	G	E	I	E	G	E	G	E	G	E	H	H	H	E	G	E	G	E	G	E	I	E	J
+A	B	C	E	G	E	H	E	G	E	H	E	G	E	I	E	G	E	I	E	H	H	H	H	E	G	E	H	H	H	H	H	E	G	E	E	H	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	I	E	G	E	H	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	G	E	I	E	G	E	J
+A	B	C	E	G	E	I	E	I	E	G	E	E	H	E	E	G	E	G	E	I	I	E	G	E	H	H	E	J
+A	B	C	E	G	F	C	E	G	E	I	E	G	E	J
+A	B	C	E	G	E	E	G	E	H	E	I	E	G	E	H	E	G	E	H	E	G	E	J
+A	B	D	B	C	E	G	E	E	G	E	E	H	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	J
+A	B	C	E	G	E	I	I	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	J
+A	B	C	E	G	E	I	E	G	E	J
+A	B	D	E	G	E	G	E	I	E	I	I	E	H	E	I	E	J
+A	B	D	B	C	E	G	E	I	E	E	H	E	J
+A	B	D	B	C	E	G	E	I	E	E	H	E	J
+A	B	C	E	G	E	H	E	G	E	H	H	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	H	H	H	H	H	H	E	G	E	J
+A	B	C	E	G	E	H	H	E	H	H	H	H	H	H	H	H	H	H	H	H	E	G	E	J
+A	B	C	E	G	E	E	I	E	J
+A	B	C	E	G	E	I	E	I	E	H	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	J
+A	B	C	E	G	E	E	H	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	J
+A	B	C	E	G	E	H	H	E	G	E	H	H	E	G	E	H	H	E	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	E	G	E	J
+A	B	C	E	G	E	H	E	H	E	G	E	I	E	G	E	H	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	I	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	I	E	G	E	H	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	I	E	G	R	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	H	E	J
+A	B	C	E	G	E	I	E	H	E	I	E	G	E	H	H	H	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	H	E	G	E	H	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	H	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	I	E	G	E	H	H	E	G	E	I	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	H	E	G	E	J
+A	B	C	E	G	E	I	I	E	G	E	H	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	H	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	H	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	H	H	E	G	E	G	E	G	E	J
+A	B	C	E	G	E	G	E	E	G	E	G	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	E	G	E	G	E	H	H	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	J
+A	B	B	C	E	G	E	H	E	G	E	H	E	G	E	H	E	G	E	I	E	G	E	H	E	G	E	I	E	G	E	H	E	G	E	H	H	H	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	I	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	H	E	G	E	J
+A	B	C	E	G	E	H	H	E	G	E	J
+A	B	C	E	G	E	G	E	I	E	G	E	H	H	E	J
+A	B	C	E	G	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	G	E	J
+A	B	D	B	C	E	H	E	G	E	I	I	E	G	E	J
+A	B	D	B	C	E	H	H	H	E	G	E	I	E	G	E	H	H	H	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	I	I	E	G	E	H	E	G	E	I	I	E	G	E	H	H	E	J
+A	B	C	E	G	E	I	E	G	E	H	H	H	H	E	G	E	J
+A	B	B	B	C	E	G	E	I	E	E	G	E	H	E	G	E	J
+A	B	D	B	C	E	G	E	H	E	G	E	I	E	G	E	H	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	I	E	J
+A	B	D	B	D	B	C	E	G	E	H	E	G	E	I	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	H	E	G	E	J
+A	B	D	B	C	E	G	E	H	E	G	E	I	E	G	E	H	E	J
+A	B	B	C	E	G	E	G	E	G	E	J
+A	B	B	B	C	E	G	E	I	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	J
+A	B	D	B	C	E	G	E	H	E	G	E	H	H	H	H	E	G	E	J
+A	B	C	E	G	E	G	E	I	E	G	E	H	E	G	E	I	E	G	E	H	E	J
+A	B	C	E	G	E	G	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	I	E	G	E	H	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	H	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	H	H	H	H	E	G	E	J
+A	B	C	E	G	E	I	I	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	H	E	G	E	J
+A	B	C	E	G	E	G	F	C	F	C	E	G	E	I	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	I	E	G	E	H	H	H	E	G	E	H	E	G	E	H	E	G	E	H	E	G	E	J
+A	B	C	C	E	I	E	G	E	I	E	G	E	I	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	H	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	B	B	C	E	G	E	I	E	G	E	E	H	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	H	H	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	E	H	E	G	E	I	E	G	E	J
+A	B	C	E	G	E	H	H	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	H	E	G	E	H	E	G	E	I	E	E	H	H	E	J
+A	B	C	E	G	E	I	I	I	E	G	E	H	E	G	E	H	H	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	J
+A	B	B	C	E	E	H	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	G	E	G	E	G	E	G	E	J
+A	B	B	C	E	G	E	G	E	G	E	G	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	G	E	G	E	E	G	E	G	E	J
+A	B	C	E	G	E	E	H	E	G	E	J
+A	B	C	E	G	E	E	H	E	G	E	J
+A	B	C	E	G	E	H	H	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	J
+A	B	C	E	G	E	I	I	E	G	E	E	H	H	E	G	E	H	E	G	E	H	E	J
+A	B	C	E	G	E	H	E	G	E	E	H	H	E	J
+A	B	B	C	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	I	E	G	E	H	H	E	J
+A	B	C	E	G	E	H	H	H	H	E	G	E	J
+A	B	C	E	G	E	H	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	G	E	G	E	J
+A	B	C	E	G	E	G	E	H	E	G	E	H	E	G	E	H	E	J
+A	B	C	E	G	E	I	E	G	E	H	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	H	E	G	E	H	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	I	E	G	E	I	E	H	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	I	E	G	E	H	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	I	I	E	G	E	H	H	E	J
+A	B	C	E	G	E	I	E	G	E	H	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	H	E	G	E	I	E	G	E	H	E	G	E	I	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	H	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	H	E	G	E	I	E	G	E	H	E	G	E	H	E	J
+A	B	C	D	B	C	E	G	E	I	E	G	E	I	E	G	E	H	H	H	H	E	J
+A	B	B	B	B	C	E	G	E	I	E	G	E	H	E	J
+A	B	C	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	E	I	E	G	E	H	H	H	H	H	H	E	J
+A	B	C	E	G	E	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	H	H	H	E	G	E	H	E	J
+A	B	C	E	G	E	H	E	G	E	H	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	I	E	G	E	G	E	G	E	H	E	G	E	H	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	H	H	E	G	E	H	E	G	E	E	H	H	E	J
+A	B	C	E	G	E	I	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	E	G	E	H	H	H	E	G	E	G	E	G	E	H	E	G	E	H	E	G	E	E	G	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	H	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	H	H	E	J
+A	B	C	E	G	E	H	E	E	H	H	E	G	E	J
+A	B	B	B	B	B	B	B	B	B	C	E	G	E	I	E	G	E	G	E	G	E	J
+A	B	C	E	G	E	I	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	F	C	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	G	E	G	E	J
+A	B	D	B	C	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	G	E	G	E	H	E	G	E	G	E	H	H	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	J
+A	B	C	E	G	E	I	E	G	E	H	H	E	G	E	H	E	G	E	H	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	G	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	G	E	G	E	G	E	H	H	H	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	H	H	H	H	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	I	E	G	E	E	E	H	H	H	E	J
+A	B	B	C	E	G	E	I	E	G	E	H	E	I	E	G	E	J
+A	B	C	E	G	E	H	H	H	E	G	E	H	E	G	E	J
+A	B	C	E	H	E	G	E	I	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	I	E	G	E	J
+A	B	C	E	G	E	H	E	E	J
+A	B	C	E	G	E	H	E	H	E	E	H	E	J
+A	B	C	E	G	E	H	E	H	E	E	H	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	H	E	G	E	H	E	G	E	J
+A	B	C	E	G	F	C	E	J
+A	B	C	E	G	E	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	I	I	I	E	H	E	H	E	G	E	J
+A	B	C	E	G	H	E	H	E	H	E	J
+A	B	D	B	C	E	G	E	I	I	E	G	E	H	E	G	E	J
+A	B	C	E	H	F	C	E	H	E	H	E	H	E	J
+A	B	C	E	G	E	H	E	G	E	I	E	G	E	H	H	H	E	G	E	J
+A	B	B	C	E	G	E	I	E	G	E	I	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	G	E	G	E	H	H	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	H	E	G	E	I	E	G	E	J
+A	B	C	E	G	E	G	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	H	H	H	E	G	E	E	H	E	G	E	J
+A	B	C	F	C	E	G	E	G	E	I	E	G	E	H	H	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	H	E	G	E	H	E	G	E	H	E	G	E	J
+A	B	C	E	G	E	I	E	G	E	H	E	G	E	J`;
+    let matrix=str.split("\n");
+    let allTrace=[];
+    for(let i=0;i<matrix.length;i++){
+        allTrace.push(matrix[i].split("\t").join(','));
+    }
+
+    let arr=[];
+    let numOfTrace=[];
+
+    for(let i=0;i<allTrace.length;i++){
+        if (arr.indexOf(allTrace[i])===-1){
+            arr.push(allTrace[i]);
+            numOfTrace.push(1);
+        }else {
+            let key=arr.indexOf(allTrace[i]);
+            numOfTrace[key]++;
+        }
+    }
+
+    let SFM=['A and D','A and F','A and G','A and I','A and H','B and D','B and F','B and G','B and I','B and H','C and F','C and G','C and I','C and H','D and F','D and G','D and I','D and H','F and G','F and I','F and H','E and G','E and I','E and H','E and E','H and G','H and I','H and H','G and G','G and I','G and H','I and G','I and I','I and H'];
+    let SPM=['B and B','C and C','D and B','D and C','D and D','D and E','D and F','D and G','D and H','D and I','D and J','F and F','F and G','F and H','F and I','F and J','G and G','G and H','G and I','G and J','H and G','H and H','H and I','H and J','I and G','I and H','I and I','I and J'];
+
+    let SFL=[];
+    let SPL=[];
+    let zimu=['A','B','C','D','E','F','G','H','I','J'];
+    for (let i=0;i<zimu.length;i++){
+        for (let j=0;j<zimu.length;j++){
+            let sum=0;
+            arr.forEach(item=>{
+                if(item.indexOf(zimu[i])<item.indexOf(zimu[j])){
+                    sum++;
+                }
+            });
+            if (sum>0&&sum<150){
+                SFL.push(`${zimu[i]} and ${zimu[j]}`);
+            }
+        }
+    }
+//console.log(SFL);
+
+    for (let i=0;i<zimu.length;i++){
+        for (let j=0;j<zimu.length;j++){
+            let sum=0;
+            arr.forEach(item=>{
+                if(item.indexOf(zimu[i])<item.indexOf(zimu[j])&&item.indexOf(zimu[i])!==-1){
+                    sum++;
+                }
+            });
+            if (sum>0&&sum<150){
+                SPL.push(`${zimu[i]} and ${zimu[j]}`);
+            }
+        }
+    }
+//    console.log(SPL);
+
+    function jiaoJi(arr1,arr2) {
+        let result=[];
+        arr1.forEach(item=>{
+            if (arr2.indexOf(item)!==-1){
+                result.push(item);
+            }
+        });
+        return result;
+    }
+
+    console.log('aB:',0.5*jiaoJi(SFM,SFL).length/SFM.length+0.5*jiaoJi(SPM,SPL).length/SPM.length);
+</script>
+</body>
+</html>

@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: xiejun
- * Date: 2018/1/8
- * Time: 下午3:47
- */
+
 $fp=fopen('hostipal-After2.txt','r');
 
 $traces=[];

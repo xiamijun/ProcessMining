@@ -1,10 +1,3 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: xiejun
- * Date: 2017/12/26
- * Time: 上午10:02
- */
 $fp=fopen('Hospital Billing - Event Log.xes','r');
 $str='';
 while (!feof($fp)){
