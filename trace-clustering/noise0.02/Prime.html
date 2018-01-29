@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let MAXNUM=10000;
+    let n=10;
+    let log=['ABDCEGIJKM','ABCDEGMJKI','ACBDFGIHIJKM','ABCDEGIJKM','ACBDEGIHIJKM','ABCDEGIHIJKM','ACBDFGIJKM','ABCDFGIJKM','ABCDFGIHIJKM','ACBDEGIJKM'];
+    let numOfTrace=[1,1,15,13,16,13,13,10,10,8];
+
+    let GA=new Array(log.length);
+    for (let i=0;i<log.length;i++){
+        GA[i]=new Array(log.length);
+        GA[i].fill(0);
+    }
+
+    for(let i=0;i<log.length;i++){
+        for(j=0;j<log.length;j++){
+//            console.log(`Distance of trace${i} and trace${j} is:`,distance(log[i],log[j]));
+            GA[i][j]=distance(log[i],log[j]);
+        }
+    }
+
+    let GE=[];
+    let T=[];
+
+
+    let k=1;
+    for (let i=1;i<=n;i++){
+        for (let j=i+1;j<=n;j++){
+            if(GA[i][j]!==0){
+                GE[k]={
+                    'fromvex':i,
+                    'tovex':j,
+                    'weight':GA[i][j]
+                };
+                k++;
+            }
+        }
+    }
+
+    GE.sort((a,b)=>a-b);
+
+    let k2=1;
+    for (let i=1;i<=n;i++){
+        if (i!==1){
+            T[k2]={
+                'fromvex':1,
+                'tovex':i,
+                'weight':GA[1][j]
+            };
+            k2++;
+        }
+    }
+    for (let i=1;i<n;i++){
+        let min=MAXNUM;
+        let m=i;
+        for (let j=i;j<n;j++){
+            if(T[j].weight<min){
+                min=T[j].weight;
+                m=j;
+            }
+        }
+        let temp=T[k];
+        T[k]=T[m];
+        T[m]=temp;
+        j=T[k].tovex;
+        for (let k=i+1;k<n;k++){
+            let u=T[k].tovex;
+            let w=GA[j][u];
+            if(w<T[k].weight){
+                T[k].weight=w;
+                T[k].fromvex=j;
+            }
+        }
+    }
+
+    console.log(T)
+
+    function distance(tracek,tracel,zimu=['A','B','C','D','E','F','G','H','I','J','K','M']) {
+        let sum=0;
+        for(let i=0;i<zimu.length;i++){
+            for(let j=0;j<zimu.length;j++){
+                sum+=Math.abs(p(zimu[i],tracek)*f(zimu[i],zimu[j],tracek)-p(zimu[i],tracel)*f(zimu[i],zimu[j],tracel));
+            }
+        }
+        return 0.5*sum;
+    }
+
+    function p(task,trace) {
+        let count=0;
+        let arr=trace.split('');
+        for (let i=0;i<arr.length;i++){
+            if (arr[i]===task){
+                count++;
+            }
+        }
+        return count/arr.length;
+    }
+
+    function f(taski,taskj,trace) {
+        let arr=trace.split('');
+        for(let i=0;i<arr.length-1;i++){
+            if(arr[i]===taski&&arr[i+1]===taskj){
+                return 1;
+            }
+        }
+        return 0;
+    }
+</script>
+</body>
+</html>

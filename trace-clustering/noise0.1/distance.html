@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="jquery.min.js"></script>
+<script src="springy.js"></script>
+<script src="springyui.js"></script>
+<script>
+    let log=['ACCBDEGIHIJKM','ACBDDEGIJKM','ACBDFGIJKMM','ABCDFGIHIJJKM','ACBDDEGIHIJKM','ACBDEGIIJKM','ABDFGIHIJKM','ABCCDEGIJKM','ABCFGIJKM','ABCDFGIHIJKM','ACBDEGIHIJKM','ACBDFGIJKM','ABCDEGIJKM','ABCDFGIJKM','ACBDEGIJKM','ACBDFGIHIJKM','ABCDEGIHIJKM'];
+    let numOfTrace=[1,1,1,1,1,1,1,1,1,15,8,17,10,13,12,8,8];
+
+    let matrix=new Array(log.length);
+    for (let i=0;i<log.length;i++){
+        matrix[i]=new Array(log.length);
+        matrix[i].fill(0);
+    }
+
+    for(let i=0;i<log.length;i++){
+        for(j=0;j<log.length;j++){
+//            console.log(`Distance of trace${i} and trace${j} is:`,distance(log[i],log[j]));
+            matrix[i][j]=distance(log[i],log[j]);
+        }
+    }
+console.table(matrix);
+
+//    let edges=[];
+//    let num=[0,1,2,3,4,5,6,7,8,9];
+//    let old=[];
+//    let i=0;
+//    while (num.length){
+//        let row=[];
+//        for (let j=0;j<10;j++){
+//            if(i!==j&&old.indexOf(j)===-1){
+//                row.push(matrix[i][j]);
+//            }
+//        }
+//        let min=Math.min(...row);
+//        let index=matrix[i].indexOf(min);
+//        if (index!==-1){
+//            edges.push(new Array(i,index));
+//        }
+//        old.push(i);
+//        num.splice(num.indexOf(i),1);
+//        i=index;
+//    }
+//console.log(edges);
+//
+//    for (let i=0;i<edges.length;i++){
+////        console.log(`${edges[i]}:);
+//
+//    }
+
+    //活动task在轨迹trace中出现的概率
+    function p(task,trace) {
+        let count=0;
+        let arr=trace.split('');
+        for (let i=0;i<arr.length;i++){
+            if (arr[i]===task){
+                count++;
+            }
+        }
+        return count/arr.length;
+    }
+
+    function f(taski,taskj,trace) {
+        let arr=trace.split('');
+        for(let i=0;i<arr.length-1;i++){
+            if(arr[i]===taski&&arr[i+1]===taskj){
+                return 1;
+            }
+        }
+        return 0;
+    }
+    
+    function distance(tracek,tracel,zimu=['A','B','C','D','E','F','G','H','I','J','K','M']) {
+        let sum=0;
+        for(let i=0;i<zimu.length;i++){
+            for(let j=0;j<zimu.length;j++){
+                sum+=Math.abs(p(zimu[i],tracek)*f(zimu[i],zimu[j],tracek)-p(zimu[i],tracel)*f(zimu[i],zimu[j],tracel));
+            }
+        }
+        return 0.5*sum;
+    }
+
+//    var graph = new Springy.Graph();
+//
+//    graph.addNodes('trace0','trace1','trace2','trace3','trace4','trace5','trace6','trace7','trace8','trace9');
+//    for (let i=0;i<edges.length;i++) {
+//
+//        graph.addEdges(
+//            [`trace${edges[i][0]}`, `trace${edges[i][1]}`, {color: '#000'}]
+//        );
+//    }
+//
+//    jQuery(function(){
+//        var springy = jQuery('#springydemo').springy({
+//            graph: graph
+//        });
+//    });
+</script>
+<canvas id="springydemo" width="640" height="480" />
+</body>
+</html>

@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    let trace=['ACBDEGIIJKM','ABCIEGIHDJKM','ACBDEGGIJKM','ACKDEGIHIJBM','AGBDFCIJKM','ABCDEGIHIJKM','ABCDFGIJKM','ACBDFGIJKM','ACBDFGIHIJKM','ABCDFGIHIJKM','ACBDEGIJKM','ACBDEGIHIJKM','ABCDEGIJKM'];
+    let numOfTrace=[1,1,1,1,1,10,7,11,16,8,15,17,11];
+    let P=0;
+    let R=0;
+    for (let i=0;i<trace.length;i++){
+        let countOfP=0;
+        let countOfR=0;
+        let temp2=numOfTrace[i]/trace[i].length;
+        for (let j=0;j<trace[i].length;j++){
+            let arrr=enable('r',trace[i],j);
+            let arrm=enable('m',trace[i],j);
+            let temp1=jiaoJi(arrr,arrm);
+            countOfP+=temp1.length/arrm.length;
+            countOfR+=temp1.length/arrr.length;
+        }
+        P+=countOfP*temp2;
+        R+=countOfR*temp2;
+    }
+    console.log('P',P/100);
+    console.log('R',R/100);
+
+    //task活动触发后，在模型中可激活的活动集合
+    function enable(type,str,i){
+        switch (str){
+            case 'ACBDEGIIJKM':
+                switch (i){
+                    case 0:
+                        return ['A'];
+                        break;
+                    case 1:
+                        switch (type){
+                            case 'r':
+                                return ['B','C'];
+                                break;
+                            case 'm':
+                                return ['B','C'];
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (type){
+                            case 'r':
+                                return ['B'];
+                                break;
+                            case 'm':
+                                return ['B'];
+                                break;
+                        }
+                        break;
+                    case 3:
+                        return ['D'];
+                        break;
+                    case 4:
+                        switch (type){
+                            case 'r':
+                                return ['E','F'];
+                                break;
+                            case 'm':
+                                return ['E','F'];
+                                break;
+                        }
+                        break;
+                    case 5:
+                        return ['G'];
+                        break;
+                    case 6:
+                        return ['I'];
+                        break;
+                    case 7:
+                        switch (type){
+                            case 'r':
+                                return ['J','H'];
+                                break;
+                            case 'm':
+                                return ['J','I','H'];
+                                break;
+                        }
+                        break;
+                    case 8:
+                        switch (type){
+                            case 'r':
+                                return ['J','H'];
+                                break;
+                            case 'm':
+                                return ['J','I','H'];
+                                break;
+                        }
+                        break;
+                    case 9:
+                        return ['K'];
+                        break;
+                    case 10:
+                        return ['M'];
+                        break;
+                }
+                break;
+            case 'ABCIEGIHDJKM':
+                switch (i){
+                    case 0:
+                        return ['A'];
+                        break;
+                    case 1:
+                        switch (type){
+                            case 'r':
+                                return ['B','C'];
+                                break;
+                            case 'm':
+                                return ['B','C'];
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (type){
+                            case 'r':
+                                return ['C'];
+                                break;
+                            case 'm':
+                                return ['C'];
+                                break;
+                        }
+                        break;
+                    case 3:
+                        switch (type){
+                            case 'r':
+                                return ['D'];
+                                break;
+                            case 'm':
+                                return ['D'];
+                                break;
+                        }
+                        break;
+                    case 4:
+                        switch (type){
+                            case 'r':
+                                return ['J','H','D'];
+                                break;
+                            case 'm':
+                                return ['J','H','D','I'];
+                                break;
+                        }
+                        break;
+                    case 5:
+                        switch (type){
+                            case 'r':
+                                return ['G','J','H','D'];
+                                break;
+                            case 'm':
+                                return ['G','J','H','D','I'];
+                                break;
+                        }
+                        break;
+                    case 6:
+                        switch (type){
+                            case 'r':
+                                return ['I','G','J','H','D'];
+                                break;
+                            case 'm':
+                                return ['I','G','J','H','D'];
+                                break;
+                        }
+                        break;
+                    case 7:
+                        switch (type){
+                            case 'r':
+                                return ['J','H','G','D'];
+                                break;
+                            case 'm':
+                                return ['J','H','G','D','I'];
+                                break;
+                        }
+                        break;
+                    case 8:
+                        switch (type){
+                            case 'r':
+                                return ['I','G','D'];
+                                break;
+                            case 'm':
+                                return ['G','D','I'];
+                                break;
+                        }
+                        break;
+                    case 9:
+                        switch (type){
+                            case 'r':
+                                return ['I','G','E','F'];
+                                break;
+                            case 'm':
+                                return ['G','E','F','I'];
+                                break;
+                        }
+                        break;
+                    case 10:
+                        switch (type){
+                            case 'r':
+                                return ['I','G','E','F','K'];
+                                break;
+                            case 'm':
+                                return ['G','E','F','I','K'];
+                                break;
+                        }
+                        break;
+                    case 11:
+                        switch (type){
+                            case 'r':
+                                return ['I','G','E','F','K','M'];
+                                break;
+                            case 'm':
+                                return ['G','E','F','I','K','M'];
+                                break;
+                        }
+                        break;
+                }
+                break;
+            case 'ACBDEGGIJKM':
+                switch (i){
+                    case 0:
+                        return ['A'];
+                        break;
+                    case 1:
+                        switch (type){
+                            case 'r':
+                                return ['B','C'];
+                                break;
+                            case 'm':
+                                return ['B','C'];
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (type){
+                            case 'r':
+                                return ['B'];
+                                break;
+                            case 'm':
+                                return ['B'];
+                                break;
+                        }
+                        break;
+                    case 3:
+                        switch (type){
+                            case 'r':
+                                return ['D'];
+                                break;
+                            case 'm':
+                                return ['D'];
+                                break;
+                        }
+                        break;
+                    case 4:
+                        switch (type){
+                            case 'r':
+                                return ['E','F'];
+                                break;
+                            case 'm':
+                                return ['E','F'];
+                                break;
+                        }
+                        break;
+                    case 5:
+                        switch (type){
+                            case 'r':
+                                return ['G'];
+                                break;
+                            case 'm':
+                                return ['G'];
+                                break;
+                        }
+                        break;
+                    case 6:
+                        switch (type){
+                            case 'r':
+                                return ['I'];
+                                break;
+                            case 'm':
+                                return ['I'];
+                                break;
+                        }
+                        break;
+                    case 7:
+                        switch (type){
+                            case 'r':
+                                return ['I'];
+                                break;
+                            case 'm':
+                                return ['I'];
+                                break;
+                        }
+                        break;
+                    case 8:
+                        switch (type){
+                            case 'r':
+                                return ['J','H'];
+                                break;
+                            case 'm':
+                                return ['I','J','H'];
+                                break;
+                        }
+                        break;
+                    case 9:
+                        switch (type){
+                            case 'r':
+                                return ['K'];
+                                break;
+                            case 'm':
+                                return ['I','K'];
+                                break;
+                        }
+                        break;
+                    case 10:
+                        switch (type){
+                            case 'r':
+                                return ['M'];
+                                break;
+                            case 'm':
+                                return ['I','M'];
+                                break;
+                        }
+                        break;
+                }
+                break;
+            case 'ACKDEGIHIJBM':
+                switch (i){
+                    case 0:
+                        return ['A'];
+                        break;
+                    case 1:
+                        switch (type){
+                            case 'r':
+                                return ['B','C'];
+                                break;
+                            case 'm':
+                                return ['B','C'];
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (type){
+                            case 'r':
+                                return ['B'];
+                                break;
+                            case 'm':
+                                return ['B'];
+                                break;
+                        }
+                        break;
+                    case 3:
+                        switch (type){
+                            case 'r':
+                                return ['B','M'];
+                                break;
+                            case 'm':
+                                return ['B','M'];
+                                break;
+                        }
+                        break;
+                    case 4:
+                        switch (type){
+                            case 'r':
+                                return ['E','F','B','M'];
+                                break;
+                            case 'm':
+                                return ['E','F','B','M'];
+                                break;
+                        }
+                        break;
+                    case 5:
+                        switch (type){
+                            case 'r':
+                                return ['G','B','M'];
+                                break;
+                            case 'm':
+                                return ['G','B','M'];
+                                break;
+                        }
+                        break;
+                    case 6:
+                        switch (type){
+                            case 'r':
+                                return ['I','B','M'];
+                                break;
+                            case 'm':
+                                return ['I','B','M'];
+                                break;
+                        }
+                        break;
+                    case 7:
+                        switch (type){
+                            case 'r':
+                                return ['J','H','B','M'];
+                                break;
+                            case 'm':
+                                return ['J','H','B','M','I'];
+                                break;
+                        }
+                        break;
+                    case 8:
+                        switch (type){
+                            case 'r':
+                                return ['I','B','M'];
+                                break;
+                            case 'm':
+                                return ['I','B','M'];
+                                break;
+                        }
+                        break;
+                    case 9:
+                        switch (type){
+                            case 'r':
+                                return ['J','H','B','M'];
+                                break;
+                            case 'm':
+                                return ['I','J','H','B','M'];
+                                break;
+                        }
+                        break;
+                    case 10:
+                        switch (type){
+                            case 'r':
+                                return ['K','B','M'];
+                                break;
+                            case 'm':
+                                return ['I','K','B','M'];
+                                break;
+                        }
+                        break;
+                    case 11:
+                        switch (type){
+                            case 'r':
+                                return ['K','D','M'];
+                                break;
+                            case 'm':
+                                return ['I','K','D','M'];
+                                break;
+                        }
+                        break;
+                }
+                break;
+            case 'AGBDFCIJKM':
+                switch (i){
+                    case 0:
+                        return ['A'];
+                        break;
+                    case 1:
+                        switch (type){
+                            case 'r':
+                                return ['B','C'];
+                                break;
+                            case 'm':
+                                return ['B','C'];
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (type){
+                            case 'r':
+                                return ['B','C','I'];
+                                break;
+                            case 'm':
+                                return ['B','C','I'];
+                                break;
+                        }
+                        break;
+                    case 3:
+                        switch (type){
+                            case 'r':
+                                return ['C','I'];
+                                break;
+                            case 'm':
+                                return ['C','I'];
+                                break;
+                        }
+                        break;
+                    case 4:
+                        switch (type){
+                            case 'r':
+                                return ['E','F','C','I'];
+                                break;
+                            case 'm':
+                                return ['E','F','C','I'];
+                                break;
+                        }
+                        break;
+                    case 5:
+                        switch (type){
+                            case 'r':
+                                return ['G','C','I'];
+                                break;
+                            case 'm':
+                                return ['G','C','I'];
+                                break;
+                        }
+                        break;
+                    case 6:
+                        switch (type){
+                            case 'r':
+                                return ['D','G','I'];
+                                break;
+                            case 'm':
+                                return ['D','G','I'];
+                                break;
+                        }
+                        break;
+                    case 7:
+                        switch (type){
+                            case 'r':
+                                return ['D','G','J','H'];
+                                break;
+                            case 'm':
+                                return ['D','G','J','H','I'];
+                                break;
+                        }
+                        break;
+                    case 8:
+                        switch (type){
+                            case 'r':
+                                return ['D','G','K'];
+                                break;
+                            case 'm':
+                                return ['D','G','K','I'];
+                                break;
+                        }
+                        break;
+                    case 9:
+                        switch (type){
+                            case 'r':
+                                return ['D','G','M'];
+                                break;
+                            case 'm':
+                                return ['D','G','M'];
+                                break;
+                        }
+                        break;
+                }
+                break;
+            case 'ABCDEGIHIJKM':
+                switch (i){
+                    case 0:
+                        return ['A'];
+                        break;
+                    case 1:
+                        switch (type){
+                            case 'r':
+                                return ['B','C'];
+                                break;
+                            case 'm':
+                                return ['B','C'];
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (type){
+                            case 'r':
+                                return ['C'];
+                                break;
+                            case 'm':
+                                return ['C'];
+                                break;
+                        }
+                        break;
+                    case 3:
+                        switch (type){
+                            case 'r':
+                                return ['D'];
+                                break;
+                            case 'm':
+                                return ['D'];
+                                break;
+                        }
+                        break;
+                    case 4:
+                        switch (type){
+                            case 'r':
+                                return ['E','F'];
+                                break;
+                            case 'm':
+                                return ['E','F'];
+                                break;
+                        }
+                        break;
+                    case 5:
+                        switch (type){
+                            case 'r':
+                                return ['G'];
+                                break;
+                            case 'm':
+                                return ['G'];
+                                break;
+                        }
+                        break;
+                    case 6:
+                        switch (type){
+                            case 'r':
+                                return ['I'];
+                                break;
+                            case 'm':
+                                return ['I'];
+                                break;
+                        }
+                        break;
+                    case 7:
+                        switch (type){
+                            case 'r':
+                                return ['J','H'];
+                                break;
+                            case 'm':
+                                return ['J','H','I'];
+                                break;
+                        }
+                        break;
+                    case 8:
+                        switch (type){
+                            case 'r':
+                                return ['I'];
+                                break;
+                            case 'm':
+                                return ['I'];
+                                break;
+                        }
+                        break;
+                    case 9:
+                        switch (type){
+                            case 'r':
+                                return ['J','H'];
+                                break;
+                            case 'm':
+                                return ['J','H','I'];
+                                break;
+                        }
+                        break;
+                    case 10:
+                        switch (type){
+                            case 'r':
+                                return ['K'];
+                                break;
+                            case 'm':
+                                return ['K'];
+                                break;
+                        }
+                        break;
+                    case 11:
+                        switch (type){
+                            case 'r':
+                                return ['M'];
+                                break;
+                            case 'm':
+                                return ['M'];
+                                break;
+                        }
+                        break;
+                }
+                break;
+            case 'ABCDFGIJKM':
+                switch (i){
+                    case 0:
+                        return ['A'];
+                        break;
+                    case 1:
+                        switch (type){
+                            case 'r':
+                                return ['B','C'];
+                                break;
+                            case 'm':
+                                return ['B','C'];
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (type){
+                            case 'r':
+                                return ['B'];
+                                break;
+                            case 'm':
+                                return ['B'];
+                                break;
+                        }
+                        break;
+                    case 3:
+                        switch (type){
+                            case 'r':
+                                return ['D'];
+                                break;
+                            case 'm':
+                                return ['D'];
+                                break;
+                        }
+                        break;
+                    case 4:
+                        switch (type){
+                            case 'r':
+                                return ['E','F'];
+                                break;
+                            case 'm':
+                                return ['E','F'];
+                                break;
+                        }
+                        break;
+                    case 5:
+                        switch (type){
+                            case 'r':
+                                return ['G'];
+                                break;
+                            case 'm':
+                                return ['G'];
+                                break;
+                        }
+                        break;
+                    case 6:
+                        switch (type){
+                            case 'r':
+                                return ['I'];
+                                break;
+                            case 'm':
+                                return ['I'];
+                                break;
+                        }
+                        break;
+                    case 7:
+                        switch (type){
+                            case 'r':
+                                return ['J','H'];
+                                break;
+                            case 'm':
+                                return ['J','H','I'];
+                                break;
+                        }
+                        break;
+                    case 8:
+                        switch (type){
+                            case 'r':
+                                return ['K'];
+                                break;
+                            case 'm':
+                                return ['K'];
+                                break;
+                        }
+                        break;
+                    case 9:
+                        switch (type){
+                            case 'r':
+                                return ['M'];
+                                break;
+                            case 'm':
+                                return ['M'];
+                                break;
+                        }
+                        break;
+                }
+                break;
+            case 'ACBDFGIJKM':
+                switch (i){
+                    case 0:
+                        return ['A'];
+                        break;
+                    case 1:
+                        switch (type){
+                            case 'r':
+                                return ['B','C'];
+                                break;
+                            case 'm':
+                                return ['B','C'];
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (type){
+                            case 'r':
+                                return ['C'];
+                                break;
+                            case 'm':
+                                return ['C'];
+                                break;
+                        }
+                        break;
+                    case 3:
+                        switch (type){
+                            case 'r':
+                                return ['D'];
+                                break;
+                            case 'm':
+                                return ['D'];
+                                break;
+                        }
+                        break;
+                    case 4:
+                        switch (type){
+                            case 'r':
+                                return ['E','F'];
+                                break;
+                            case 'm':
+                                return ['E','F'];
+                                break;
+                        }
+                        break;
+                    case 5:
+                        switch (type){
+                            case 'r':
+                                return ['G'];
+                                break;
+                            case 'm':
+                                return ['G'];
+                                break;
+                        }
+                        break;
+                    case 6:
+                        switch (type){
+                            case 'r':
+                                return ['I'];
+                                break;
+                            case 'm':
+                                return ['I'];
+                                break;
+                        }
+                        break;
+                    case 7:
+                        switch (type){
+                            case 'r':
+                                return ['J','H'];
+                                break;
+                            case 'm':
+                                return ['J','H','I'];
+                                break;
+                        }
+                        break;
+                    case 8:
+                        switch (type){
+                            case 'r':
+                                return ['K'];
+                                break;
+                            case 'm':
+                                return ['K'];
+                                break;
+                        }
+                        break;
+                    case 9:
+                        switch (type){
+                            case 'r':
+                                return ['M'];
+                                break;
+                            case 'm':
+                                return ['M'];
+                                break;
+                        }
+                        break;
+                }
+                break;
+            case 'ACBDFGIHIJKM':
+                switch (i){
+                    case 0:
+                        return ['A'];
+                        break;
+                    case 1:
+                        switch (type){
+                            case 'r':
+                                return ['B','C'];
+                                break;
+                            case 'm':
+                                return ['B','C'];
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (type){
+                            case 'r':
+                                return ['C'];
+                                break;
+                            case 'm':
+                                return ['C'];
+                                break;
+                        }
+                        break;
+                    case 3:
+                        switch (type){
+                            case 'r':
+                                return ['D'];
+                                break;
+                            case 'm':
+                                return ['D'];
+                                break;
+                        }
+                        break;
+                    case 4:
+                        switch (type){
+                            case 'r':
+                                return ['E','F'];
+                                break;
+                            case 'm':
+                                return ['E','F'];
+                                break;
+                        }
+                        break;
+                    case 5:
+                        switch (type){
+                            case 'r':
+                                return ['G'];
+                                break;
+                            case 'm':
+                                return ['G'];
+                                break;
+                        }
+                        break;
+                    case 6:
+                        switch (type){
+                            case 'r':
+                                return ['I'];
+                                break;
+                            case 'm':
+                                return ['I'];
+                                break;
+                        }
+                        break;
+                    case 7:
+                        switch (type){
+                            case 'r':
+                                return ['J','H'];
+                                break;
+                            case 'm':
+                                return ['J','H','I'];
+                                break;
+                        }
+                        break;
+                    case 8:
+                        switch (type){
+                            case 'r':
+                                return ['I'];
+                                break;
+                            case 'm':
+                                return ['I'];
+                                break;
+                        }
+                        break;
+                    case 9:
+                        switch (type){
+                            case 'r':
+                                return ['J','H'];
+                                break;
+                            case 'm':
+                                return ['J','H','I'];
+                                break;
+                        }
+                        break;
+                    case 10:
+                        switch (type){
+                            case 'r':
+                                return ['K'];
+                                break;
+                            case 'm':
+                                return ['K'];
+                                break;
+                        }
+                        break;
+                    case 11:
+                        switch (type){
+                            case 'r':
+                                return ['M'];
+                                break;
+                            case 'm':
+                                return ['M'];
+                                break;
+                        }
+                        break;
+                }
+                break;
+            case 'ABCDFGIHIJKM':
+                switch (i){
+                    case 0:
+                        return ['A'];
+                        break;
+                    case 1:
+                        switch (type){
+                            case 'r':
+                                return ['B','C'];
+                                break;
+                            case 'm':
+                                return ['B','C'];
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (type){
+                            case 'r':
+                                return ['B'];
+                                break;
+                            case 'm':
+                                return ['B'];
+                                break;
+                        }
+                        break;
+                    case 3:
+                        switch (type){
+                            case 'r':
+                                return ['D'];
+                                break;
+                            case 'm':
+                                return ['D'];
+                                break;
+                        }
+                        break;
+                    case 4:
+                        switch (type){
+                            case 'r':
+                                return ['E','F'];
+                                break;
+                            case 'm':
+                                return ['E','F'];
+                                break;
+                        }
+                        break;
+                    case 5:
+                        switch (type){
+                            case 'r':
+                                return ['G'];
+                                break;
+                            case 'm':
+                                return ['G'];
+                                break;
+                        }
+                        break;
+                    case 6:
+                        switch (type){
+                            case 'r':
+                                return ['I'];
+                                break;
+                            case 'm':
+                                return ['I'];
+                                break;
+                        }
+                        break;
+                    case 7:
+                        switch (type){
+                            case 'r':
+                                return ['J','H'];
+                                break;
+                            case 'm':
+                                return ['J','H','I'];
+                                break;
+                        }
+                        break;
+                    case 8:
+                        switch (type){
+                            case 'r':
+                                return ['I'];
+                                break;
+                            case 'm':
+                                return ['I'];
+                                break;
+                        }
+                        break;
+                    case 9:
+                        switch (type){
+                            case 'r':
+                                return ['J','H'];
+                                break;
+                            case 'm':
+                                return ['J','H','I'];
+                                break;
+                        }
+                        break;
+                    case 10:
+                        switch (type){
+                            case 'r':
+                                return ['K'];
+                                break;
+                            case 'm':
+                                return ['K'];
+                                break;
+                        }
+                        break;
+                    case 11:
+                        switch (type){
+                            case 'r':
+                                return ['M'];
+                                break;
+                            case 'm':
+                                return ['M'];
+                                break;
+                        }
+                        break;
+                }
+                break;
+            case 'ACBDEGIJKM':
+                switch (i){
+                    case 0:
+                        return ['A'];
+                        break;
+                    case 1:
+                        switch (type){
+                            case 'r':
+                                return ['B','C'];
+                                break;
+                            case 'm':
+                                return ['B','C'];
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (type){
+                            case 'r':
+                                return ['C'];
+                                break;
+                            case 'm':
+                                return ['C'];
+                                break;
+                        }
+                        break;
+                    case 3:
+                        switch (type){
+                            case 'r':
+                                return ['D'];
+                                break;
+                            case 'm':
+                                return ['D'];
+                                break;
+                        }
+                        break;
+                    case 4:
+                        switch (type){
+                            case 'r':
+                                return ['E','F'];
+                                break;
+                            case 'm':
+                                return ['E','F'];
+                                break;
+                        }
+                        break;
+                    case 5:
+                        switch (type){
+                            case 'r':
+                                return ['G'];
+                                break;
+                            case 'm':
+                                return ['G'];
+                                break;
+                        }
+                        break;
+                    case 6:
+                        switch (type){
+                            case 'r':
+                                return ['I'];
+                                break;
+                            case 'm':
+                                return ['I'];
+                                break;
+                        }
+                        break;
+                    case 7:
+                        switch (type){
+                            case 'r':
+                                return ['J','H'];
+                                break;
+                            case 'm':
+                                return ['J','H','I'];
+                                break;
+                        }
+                        break;
+                    case 8:
+                        switch (type){
+                            case 'r':
+                                return ['K'];
+                                break;
+                            case 'm':
+                                return ['K'];
+                                break;
+                        }
+                        break;
+                    case 9:
+                        switch (type){
+                            case 'r':
+                                return ['M'];
+                                break;
+                            case 'm':
+                                return ['M'];
+                                break;
+                        }
+                        break;
+                }
+                break;
+            case 'ACBDEGIHIJKM':
+                switch (i){
+                    case 0:
+                        return ['A'];
+                        break;
+                    case 1:
+                        switch (type){
+                            case 'r':
+                                return ['B','C'];
+                                break;
+                            case 'm':
+                                return ['B','C'];
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (type){
+                            case 'r':
+                                return ['C'];
+                                break;
+                            case 'm':
+                                return ['C'];
+                                break;
+                        }
+                        break;
+                    case 3:
+                        switch (type){
+                            case 'r':
+                                return ['D'];
+                                break;
+                            case 'm':
+                                return ['D'];
+                                break;
+                        }
+                        break;
+                    case 4:
+                        switch (type){
+                            case 'r':
+                                return ['E','F'];
+                                break;
+                            case 'm':
+                                return ['E','F'];
+                                break;
+                        }
+                        break;
+                    case 5:
+                        switch (type){
+                            case 'r':
+                                return ['G'];
+                                break;
+                            case 'm':
+                                return ['G'];
+                                break;
+                        }
+                        break;
+                    case 6:
+                        switch (type){
+                            case 'r':
+                                return ['I'];
+                                break;
+                            case 'm':
+                                return ['I'];
+                                break;
+                        }
+                        break;
+                    case 7:
+                        switch (type){
+                            case 'r':
+                                return ['J','H'];
+                                break;
+                            case 'm':
+                                return ['J','H','I'];
+                                break;
+                        }
+                        break;
+                    case 8:
+                        switch (type){
+                            case 'r':
+                                return ['I'];
+                                break;
+                            case 'm':
+                                return ['I'];
+                                break;
+                        }
+                        break;
+                    case 9:
+                        switch (type){
+                            case 'r':
+                                return ['J','H'];
+                                break;
+                            case 'm':
+                                return ['J','H','I'];
+                                break;
+                        }
+                        break;
+                    case 10:
+                        switch (type){
+                            case 'r':
+                                return ['K'];
+                                break;
+                            case 'm':
+                                return ['K'];
+                                break;
+                        }
+                        break;
+                    case 11:
+                        switch (type){
+                            case 'r':
+                                return ['M'];
+                                break;
+                            case 'm':
+                                return ['M'];
+                                break;
+                        }
+                        break;
+                }
+                break;
+            case 'ABCDEGIJKM':
+                switch (i){
+                    case 0:
+                        return ['A'];
+                        break;
+                    case 1:
+                        switch (type){
+                            case 'r':
+                                return ['B','C'];
+                                break;
+                            case 'm':
+                                return ['B','C'];
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (type){
+                            case 'r':
+                                return ['B'];
+                                break;
+                            case 'm':
+                                return ['B'];
+                                break;
+                        }
+                        break;
+                    case 3:
+                        switch (type){
+                            case 'r':
+                                return ['D'];
+                                break;
+                            case 'm':
+                                return ['D'];
+                                break;
+                        }
+                        break;
+                    case 4:
+                        switch (type){
+                            case 'r':
+                                return ['E','F'];
+                                break;
+                            case 'm':
+                                return ['E','F'];
+                                break;
+                        }
+                        break;
+                    case 5:
+                        switch (type){
+                            case 'r':
+                                return ['G'];
+                                break;
+                            case 'm':
+                                return ['G'];
+                                break;
+                        }
+                        break;
+                    case 6:
+                        switch (type){
+                            case 'r':
+                                return ['I'];
+                                break;
+                            case 'm':
+                                return ['I'];
+                                break;
+                        }
+                        break;
+                    case 7:
+                        switch (type){
+                            case 'r':
+                                return ['J','H'];
+                                break;
+                            case 'm':
+                                return ['J','H','I'];
+                                break;
+                        }
+                        break;
+                    case 8:
+                        switch (type){
+                            case 'r':
+                                return ['K'];
+                                break;
+                            case 'm':
+                                return ['K'];
+                                break;
+                        }
+                        break;
+                    case 9:
+                        switch (type){
+                            case 'r':
+                                return ['M'];
+                                break;
+                            case 'm':
+                                return ['M'];
+                                break;
+                        }
+                        break;
+                }
+                break;
+        }
+
+    }
+
+    function jiaoJi(arr1,arr2) {
+        let result=[];
+        arr1.forEach(item=>{
+            if (arr2.indexOf(item)!==-1){
+                result.push(item);
+            }
+        });
+        return result;
+    }
+
+</script>
+</body>
+</html>

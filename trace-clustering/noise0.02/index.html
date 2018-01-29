@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let log=['ABDCEGIJKM','ABCDEGMJKI','ACBDFGIHIJKM','ABCDEGIJKM','ACBDEGIHIJKM','ABCDEGIHIJKM','ACBDFGIJKM','ABCDFGIJKM','ABCDFGIHIJKM','ACBDEGIJKM'];
+    let numOfTrace=[1,1,15,13,16,13,13,10,10,8];
+
+    for(let i=0;i<log.length;i++){
+        for(j=i+1;j<log.length;j++){
+            console.log(`Distance of trace${i} and trace${j} is:`,distance(log[i],log[j]));
+        }
+    }
+
+    //活动task在轨迹trace中出现的概率
+    function p(task,trace) {
+        let count=0;
+        let arr=trace.split('');
+        for (let i=0;i<arr.length;i++){
+            if (arr[i]===task){
+                count++;
+            }
+        }
+        return count/arr.length;
+    }
+
+    function f(taski,taskj,trace) {
+        let arr=trace.split('');
+        for(let i=0;i<arr.length-1;i++){
+            if(arr[i]===taski&&arr[i+1]===taskj){
+                return 1;
+            }
+        }
+        return 0;
+    }
+    
+    function distance(tracek,tracel,zimu=['A','B','C','D','E','F','G','H','I','J','K','M']) {
+        let sum=0;
+        for(let i=0;i<zimu.length;i++){
+            for(let j=0;j<zimu.length;j++){
+                sum+=Math.abs(p(zimu[i],tracek)*f(zimu[i],zimu[j],tracek)-p(zimu[i],tracel)*f(zimu[i],zimu[j],tracel));
+            }
+        }
+        return 0.5*sum;
+    }
+</script>
+</body>
+</html>

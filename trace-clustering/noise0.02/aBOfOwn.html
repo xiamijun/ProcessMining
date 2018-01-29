@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    let trace=['ABDCEGIJKM','ABCDEGMJKI','ACBDFGIHIJKM','ABCDEGIJKM','ACBDEGIHIJKM','ABCDEGIHIJKM','ACBDFGIJKM','ABCDFGIJKM','ABCDFGIHIJKM','ACBDEGIJKM'];
+    let numOfTrace=[1,1,15,13,16,13,13,10,10,8];
+    let arr=[];
+    for(let i=0;i<trace.length;i++){
+        arr.push(trace[i].split(''));
+    }
+
+    let zimu=['A','B','C','D','E','F','G','H','I','J','K','M'];
+    let SFM=['C and B','B and C','A and B','A and C','A and E','A and F','A and H','B and E','B and F','B and H','C and E','C and F','D and E','D and F','C and H','D and H','E and H','F and H','G and H','I and H','H and H'];
+    let SPM=['C and B','B and C','H and H','H and I','H and J','H and K','H and M'];
+
+    for (let i=0;i<zimu.length;i++) {
+        if (i===1||i===2){
+            for (let j = 0; j < zimu.length; j++) {
+                if(j>=3){
+                    SFM.push(`${zimu[i]} and ${zimu[j]}`);
+                }
+            }
+        }
+        if (i===4||i===5){
+            for (let j = 0; j < zimu.length; j++) {
+                if(j>=6){
+                    SFM.push(`${zimu[i]} and ${zimu[j]}`);
+                }
+            }
+        }
+    }
+
+    let SFL=[];
+    let SPL=[];
+
+    for (let i=0;i<zimu.length;i++){
+        for (let j=0;j<zimu.length;j++){
+            let sum=0;
+            arr.forEach(item=>{
+                if(item.indexOf(zimu[i])<item.indexOf(zimu[j])){
+                    sum++;
+                }
+            });
+            if (sum>0&&sum<trace.length){
+                SFL.push(`${zimu[i]} and ${zimu[j]}`);
+            }
+        }
+    }
+//console.log(SFL);
+
+    for (let i=0;i<zimu.length;i++){
+        for (let j=0;j<zimu.length;j++){
+            let sum=0;
+            arr.forEach(item=>{
+                if(item.indexOf(zimu[i])<item.indexOf(zimu[j])&&item.indexOf(zimu[i])!==-1){
+                    sum++;
+                }
+            });
+            if (sum>0&&sum<trace.length){
+                SPL.push(`${zimu[i]} and ${zimu[j]}`);
+            }
+        }
+    }
+//    console.log(SPL);
+
+    function jiaoJi(arr1,arr2) {
+        let result=[];
+        arr1.forEach(item=>{
+            if (arr2.indexOf(item)!==-1){
+                result.push(item);
+            }
+        });
+        return result;
+    }
+
+    console.log('aB:',0.5*jiaoJi(SFM,SFL).length/SFM.length+0.5*jiaoJi(SPM,SPL).length/SPM.length);
+</script>
+</body>
+</html>

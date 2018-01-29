@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.min.js"></script>
+    <script src="springy.js"></script>
+    <script src="springyui.js"></script>
+</head>
+<body>
+<script>
+    var kruskal = function(params,callback){
+        var k = this; // get instance
+
+        k.nodelist = []; // nodelist
+        k.callback = callback; // callback function to execute after completion
+        k.edges = []; // edgelist
+        k.keepedges = []; // edges that we want to keep
+
+        // create edge kects
+        params.edges.forEach(function(edge,i){
+            k.edges.push({id : i, connecting : [edge[0],edge[1]],nodelist : [edge[0],edge[1]], length : edge[2]});
+        });
+
+        // sort edges by length
+        k.sort_edges();
+
+        var edges = k.edges.length; // get total number of edges
+
+        // loop all edges
+        for(var i = 0; i < edges; i++){
+            k.test_edge(); // check every edge
+        }
+    };
+
+    kruskal.prototype = {
+
+        sort_edges : function(){
+            var k = this; // get instance
+            k.edges.sort(function(a,b){
+                return b.length - a.length; // sort edges in descending order (so smallest can be removed with pop() )
+            });
+        },
+
+        finished : function(){
+
+            var k = this; // get instance
+
+            var result = [];
+            k.keepedges.forEach(function(edge){
+                result.push(edge.connecting);
+            });
+
+            if(typeof(k.callback) == "function"){
+                k.callback( result ); // call callback function and pass result
+            }
+        },
+
+        test_edge : function(){
+
+            var k = this; // get instance
+            var edge = k.edges.pop();
+            var current_edges = k.keepedges; // get array of current edges
+            var new_edge,found_1,found_2,found;
+
+            if(k.keepedges.length == 0){ // add first edge
+                k.keepedges.push(edge);
+            }else{
+                // check against other edges
+                found_1 = [], found_2 = [];
+                var found = false; // default value
+
+                k.keepedges.forEach(function(keepedge){
+                    if(keepedge.nodelist.indexOf(edge.connecting[0]) > -1 && keepedge.nodelist.indexOf(edge.connecting[1]) > -1){
+                        // both nodes are already in edge!!
+                        found = true; // set found to true
+                    }else if(keepedge.nodelist.indexOf(edge.connecting[0]) > -1){
+                        // first node found!
+                        found_1.push(keepedge);
+                    }else if(keepedge.nodelist.indexOf(edge.connecting[1]) > -1){
+                        // second node found
+                        found_2.push(keepedge);
+                    }
+                });
+
+                if(found == false && found_1.length == 0 && found_2.length == 0){ // edge is good to go
+                    new_edge = edge;
+                    k.keepedges.push(edge); // add edge
+                }else if(found == false){ //
+
+                    found_2.forEach(function(keepedge){
+                        keepedge.nodelist.push(edge.connecting[0]); // update edge with node 1
+                    });
+
+                    found_1.forEach(function(keepedge){
+                        keepedge.nodelist.push(edge.connecting[1]); // update edge with node 2
+                    });
+
+                    new_edge = edge;
+                    k.keepedges.push(edge); // add edge
+                }
+            }
+
+            if(found == false){ // new edge was added -> clean list
+                k.clean_edgelist(current_edges,new_edge);
+            }
+
+            if(k.edges.length == 0){
+                k.finished(); // execution completed
+            }
+        },
+
+        clean_edgelist : function(old_edges,new_edge){
+
+            var k = this; // get instance
+            var n1_tmp,n2_tmp,count; // define vars used in loop
+
+            // loop edges (excluding last)
+            old_edges.forEach(function(check_edge){
+
+                n1_tmp  = []; // <- nodes that are contained in new_edge but NOT check_edge
+                n2_tmp  = []; // <- nodes that are contained in check_edge but NOT new_edge
+                count = 0; // count overlapping nodes between new_edge and check_edge
+
+                // check for overlap
+                new_edge.nodelist.forEach(function(n1){
+                    if(check_edge.nodelist.indexOf(n1) > -1){ // n2 contains n1
+                        count++;
+                    }else{ // n2 does not contain n1
+                        n2_tmp.push(n1);
+                    }
+                });
+
+                if(count > 1){ // join both edges!!
+
+                    check_edge.nodelist.forEach(function(n2){
+                        if(new_edge.nodelist.indexOf(n2) == -1){ // n1 does not contain n2
+                            n1_tmp.push(n2);
+                        }
+                    });
+
+                    new_edge.nodelist = new_edge.nodelist.concat(n1_tmp); // concat with differences from check_edge
+                    check_edge.nodelist = check_edge.nodelist.concat(n2_tmp); // concat with differences from new_edge
+                }
+            });
+        }
+    };
+
+    k = new kruskal({
+        nodes : ["0","1","2","3",'4','5','6','7','8','9','10','11','12','13','14','15','16'],
+        edges : [
+            ["0","1",0.44055944055944046],
+            ["0","2",0.5489510489510488],
+            ["0","3",0.6153846153846153],
+            ["0","4",0.23076923076923078],
+            ["0","5",0.3776223776223776],
+            ["0","6",0.46853146853146854],
+            ["0","7",0.5314685314685315],
+            ["0","8",0.7179487179487181],
+            ["0","9",0.5416666666666666],
+            ["0","10",0.15064102564102555],
+            ["0","11",0.4807692307692308],
+            ["0","12",0.5807692307692308],
+            ["0","13",0.7346153846153846],
+            ["0","14",0.326923076923077],
+            ["0","15",0.3044871794871794],
+            ["0","16",0.3878205128205127],
+            ["1","2",0.40909090909090917],
+            ["1","3",0.8251748251748251],
+            ["1","4",0.22377622377622375],
+            ["1","5",0.2727272727272727],
+            ["1","6",0.6363636363636364],
+            ["1","7",0.5454545454545455],
+            ["1","8",0.6262626262626262],
+            ["1","9",0.7462121212121212],
+            ["1","10",0.3295454545454546],
+            ["1","11",0.359090909090909],
+            ["1","12",0.4409090909090908],
+            ["1","13",0.6318181818181818],
+            ["1","14",0.16818181818181818],
+            ["1","15",0.4962121212121212],
+            ["1","16",0.5795454545454546],
+            ["2","3",0.6258741258741258],
+            ["2","4",0.5629370629370629],
+            ["2","5",0.40909090909090906],
+            ["2","6",0.40909090909090906],
+            ["2","7",0.6818181818181819],
+            ["2","8",0.48989898989899006],
+            ["2","9",0.5340909090909092],
+            ["2","10",0.4507575757575758],
+            ["2","11",0.13181818181818183],
+            ["2","12",0.5863636363636363],
+            ["2","13",0.40454545454545443],
+            ["2","14",0.3136363636363637],
+            ["2","15",0.2840909090909091],
+            ["2","16",0.7007575757575759],
+            ["3","4",0.6153846153846153],
+            ["3","5",0.7622377622377624],
+            ["3","6",0.3006993006993006],
+            ["3","7",0.5944055944055944],
+            ["3","8",0.452991452991453],
+            ["3","9",0.1506410256410256],
+            ["3","10",0.5352564102564102],
+            ["3","11",0.5576923076923077],
+            ["3","12",0.4807692307692308],
+            ["3","13",0.326923076923077],
+            ["3","14",0.7115384615384616],
+            ["3","15",0.3814102564102563],
+            ["3","16",0.3044871794871794],
+            ["4","5",0.3776223776223776],
+            ["4","6",0.46853146853146854],
+            ["4","7",0.6713286713286712],
+            ["4","8",0.7179487179487181],
+            ["4","9",0.5416666666666665],
+            ["4","10",0.15064102564102555],
+            ["4","11",0.5038461538461538],
+            ["4","12",0.5576923076923076],
+            ["4","13",0.7346153846153846],
+            ["4","14",0.326923076923077],
+            ["4","15",0.3108974358974358],
+            ["4","16",0.3814102564102563],
+            ["5","6",0.5454545454545455],
+            ["5","7",0.5454545454545455],
+            ["5","8",0.6060606060606061],
+            ["5","9",0.6704545454545456],
+            ["5","10",0.25378787878787884],
+            ["5","11",0.35],
+            ["5","12",0.4409090909090908],
+            ["5","13",0.6227272727272727],
+            ["5","14",0.1681818181818182],
+            ["5","15",0.4204545454545454],
+            ["5","16",0.5037878787878788],
+            ["6","7",0.6363636363636364],
+            ["6","8",0.4242424242424243],
+            ["6","9",0.17045454545454541],
+            ["6","10",0.3371212121212121],
+            ["6","11",0.35],
+            ["6","12",0.5318181818181817],
+            ["6","13",0.35],
+            ["6","14",0.5318181818181817],
+            ["6","15",0.17045454545454541],
+            ["6","16",0.3371212121212121],
+            ["7","8",0.44444444444444453],
+            ["7","9",0.4962121212121212],
+            ["7","10",0.5795454545454545],
+            ["7","11",0.6318181818181817],
+            ["7","12",0.1681818181818182],
+            ["7","13",0.35],
+            ["7","14",0.44999999999999984],
+            ["7","15",0.7462121212121211],
+            ["7","16",0.3295454545454545],
+            ["8","9",0.375],
+            ["8","10",0.625],
+            ["8","11",0.3944444444444443],
+            ["8","12",0.2944444444444444],
+            ["8","13",0.19444444444444436],
+            ["8","14",0.49444444444444435],
+            ["8","15",0.5416666666666665],
+            ["8","16",0.4583333333333333],
+            ["9","10",0.4166666666666667],
+            ["9","11",0.47500000000000014],
+            ["9","12",0.3916666666666667],
+            ["9","13",0.22500000000000003],
+            ["9","14",0.6416666666666667],
+            ["9","15",0.24999999999999997],
+            ["9","16",0.16666666666666666],
+            ["10","11",0.3916666666666667],
+            ["10","12",0.4750000000000001],
+            ["10","13",0.6416666666666666],
+            ["10","14",0.22500000000000003],
+            ["10","15",0.16666666666666666],
+            ["10","16",0.24999999999999997],
+            ["11","12",0.49999999999999994],
+            ["11","13",0.3],
+            ["11","14",0.2],
+            ["11","15",0.22500000000000003],
+            ["11","16",0.6416666666666667],
+            ["12","13",0.2],
+            ["12","14",0.3],
+            ["12","15",0.6416666666666666],
+            ["12","16",0.22500000000000003],
+            ["13","14",0.49999999999999994],
+            ["13","15",0.4750000000000001],
+            ["13","16",0.3916666666666667],
+            ["14","15",0.3916666666666667],
+            ["14","16",0.47500000000000014],
+            ["15","16",0.4166666666666667],
+        ]
+    },function(edgelist){
+
+        console.log(edgelist);
+
+        var graph = new Springy.Graph();
+
+        graph.addNodes('trace0','trace1','trace2','trace3','trace4','trace5','trace6','trace7','trace8','trace9','trace10','trace11','trace12','trace13','trace14','trace15','trace16');
+        for (let i=0;i<edgelist.length;i++) {
+
+            graph.addEdges(
+                [`trace${edgelist[i][0]}`, `trace${edgelist[i][1]}`, {color: '#000'}]
+            );
+        }
+
+        jQuery(function(){
+            var springy = jQuery('#springydemo').springy({
+                graph: graph
+            });
+        });
+
+    });
+</script>
+<canvas id="springydemo" width="640" height="480" />
+</body>
+</html>
