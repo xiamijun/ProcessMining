@@ -41,7 +41,7 @@
 `aBOfheuristic.js`为启发式过程挖掘算法拟合度计算。
 
 
-#trace-clustering  
+# trace-clustering  
 轨迹聚类，基于最小生成树。噪声比例分别为0.02%，0.05%，0.1%，0.2%。  
 
 `distance.html`计算轨迹之间的距离。  
